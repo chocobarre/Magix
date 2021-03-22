@@ -8,6 +8,11 @@
         }
 
         protected function executeAction() {
+            if (!empty($_GET["logout"])) {
+				session_unset();
+				session_destroy();
+				session_start();
+			}
             return [];
         }
     }
