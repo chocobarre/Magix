@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-image: url(../images/hell.jpg);
+    background-size: 100% 100%;
+	background-position: top left;
+    width: 100%;
+	height: 100%;
+}
+
+#container {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#buttons {
+    width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#pratique {
+    background-image: url("../images/Pratique_Hover_Off.png");
+    width: 247px;
+    height: 58px;
+    display: block;
+    align-self: center;
+    border: 0;
+    cursor: pointer;
+}
+
+#pratique:hover {
+    background-image: url("../images/Pratique_Hover_On.png");
+}
+
+#jouer {
+    background-image: url("../images/Jouer_Hover_Off.png");
+    width: 247px;
+    height: 58px;
+    display: block;
+    align-self: center;
+    border: 0;
+    cursor: pointer;
+}
+
+#jouer:hover {
+    background-image: url("../images/Jouer_Hover_On.png");
+}
+
+#quitter {
+    background-image: url("../images/Quitter_Hover_Off.png");
+    width: 247px;
+    height: 58px;
+    display: block;
+    align-self: center;
+    border: 0;
+    cursor: pointer;
+}
+
+#quitter:hover {
+    background-image: url("../images/Quitter_Hover_On.png");
+}

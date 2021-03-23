@@ -9,37 +9,31 @@
     <head>
         <meta charset="UTF-8">
         <title>Magix</title>
-		<link rel="stylesheet" href="css/global.css"/>
+        <link rel="stylesheet" type="text/css" href="css/index.css"/>
     </head>
+
     <body>
-        <canvas id="canvas" data-full="true" class="full-canvas" width="1500" height="1100"></canvas>
+        <canvas id="canvas" data-full="true" class="canvas" width="1500" height="1100"></canvas>
 
-        <div id="background">
-            <div class="login-container">
+        <div id="container">
+            <div id="login-container">
                 <form action="index.php" method="post">
-                    <?php 
-                        if ($data["hasConnectionError"]) {
-                            ?>
-                            <div class="error-div"><Strong>Error : </Strong>&nbsp;Your username and/or password is incorrect.</div>
-                            <?php
-                        }
-                    ?>
-
                     <div>
-                        <label>Username</label>
+                        <label>USERNAME</label>
                         <input id="username" name="username" type="text" value="" required="">
                     </div>
                     <div>
-                        <label>Password</label>
+                        <label>PASSWORD</label>
                         <input id="password" name="password" type="password" value="" required="">
                     </div>
                     <div>
-                        <button class="connect" type="submit">Login</button>
+                        <button id="connect" type="submit"></button>
                     </div>
                 </form>
             </div>
         </div>
     </body>
+
     <footer>
     </footer>
 </html>

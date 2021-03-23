@@ -14,7 +14,6 @@
                 $data = [];
                 $data["username"] = $_POST["username"];
                 $data["password"] = $_POST["password"];
-
                 $result = parent::callAPI("signin", $data);
                 
                 if ($result == "INVALID_USERNAME_PASSWORD") {
@@ -27,16 +26,6 @@
                     header("location:lobby.php");
 					exit;
                 }
-
-				/*if ($_POST["username"] == "a" && $_POST["password"] == "a") {
-                    $_SESSION["visibility"] = CommonAction::$VISIBILITY_ADMINISTRATOR;
-                    
-					header("location:index.php");
-					exit;
-				}
-				else {
-					$hasConnectionError = true;
-				}*/
 			}
 
 			return compact("hasConnectionError");

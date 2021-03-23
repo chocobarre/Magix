@@ -8,11 +8,16 @@
         }
 
         protected function executeAction() {
-            if (!empty($_GET["logout"])) {
-				session_unset();
-				session_destroy();
-				session_start();
-			}
-            return [];
+            $data = [];
+            $result = parent::callAPI("signout", $data);
+
+            if ($result == "INVALID_KEY") {
+
+            }
+            else {
+                $key = $result->key;
+            }
+
+            return compact("result");
         }
     }
