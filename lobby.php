@@ -15,20 +15,21 @@
 
     <body>
         <div id="container">
-            <div id="logo">
-            </div>
+            <div id="logo"></div>
             <div>
                 <iframe style="width:700px;height:240px;border:0" onload="applyStyles(this)" 
                     src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
                 </iframe>
             </div>
             <div id="buttons">
-                <a href="board.php">
-                    <button id="pratique" type="submit"></button>
+                <a href="?training=true">
+                    <button id="training" name="training"></button>
                 </a>
-                <button id="jouer" type="submit"></button>
+                <a href="?play=true">
+                    <button id="play" name="play"></button>
+                </a>
                 <a href="?logout=true">
-                    <button id="quitter" type="submit"></button>
+                    <button id="quit" name="quit"></button>
                 </a>
             </div>
         </div>

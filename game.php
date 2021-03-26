@@ -1,8 +1,16 @@
+<?php
+    require_once("action/GameAction.php");
+
+    $action = new GameAction();
+    $data = $action->execute();
+?>
+
 <!DOCTYPE html>
     <head>
         <meta charset="UTF-8">
         <title>Magix</title>
-        <link rel="stylesheet" type="text/css" href="css/board.css"/>
+        <link rel="stylesheet" type="text/css" href="css/game.css"/>
+        <script defer src="js/game.js"></script>
     </head>
 
     <body>

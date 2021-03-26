@@ -18,12 +18,6 @@
 		}
 		
 		public function execute() {
-			/*if (!empty($_GET["logout"])) {
-				session_unset();
-				session_destroy();
-				session_start();
-			}*/
-
 			if (empty($_SESSION["visibility"])) {
 				$_SESSION["visibility"] = CommonAction::$VISIBILITY_PUBLIC;
 			}
