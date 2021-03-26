@@ -9,6 +9,10 @@
 
         protected function executeAction() {
             $hasConnectionError = false;
+
+            if (empty($_SESSION["isConnected"])) {
+                $_SESSION["isConnected"] = false;
+            }
             
 			if (isset($_POST["username"])) {
                 $data = [];
@@ -22,12 +26,13 @@
                 else {
                     // Pour voir les informations retournées : var_dump($result);exit;
                     $key = $result->key;
+                    $_SESSION["isConnected"] = true;
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
                     header("location:lobby.php");
 					exit;
                 }
 			}
 
-			return compact("hasConnectionError");
+			//return compact("hasConnectionError");
         }
     }

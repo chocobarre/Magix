@@ -10,7 +10,7 @@
         protected function executeAction() {
             if (!empty($_GET["logout"])) {
                 $result = parent::callAPI("signout", $data);
-                
+
                 if ($result == "SIGNED_OUT") {
                     session_unset();
                     session_destroy();

@@ -21,7 +21,9 @@
                 </iframe>
             </div>
             <div id="buttons">
-                <button id="pratique" type="submit"></button>
+                <a href="board.php">
+                    <button id="pratique" type="submit"></button>
+                </a>
                 <button id="jouer" type="submit"></button>
                 <a href="?logout=true">
                     <button id="quitter" type="submit"></button>
