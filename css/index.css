@@ -4,7 +4,7 @@
 }
 
 html {
-    background-image: url(../images/hell_gate.jpg);
+    background-image: url(../images/background_01.jpg);
     background-size: 100% 100%;
 	background-position: top left;
     width: 100%;
@@ -20,12 +20,22 @@ html {
 #container {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+#logo {
+    background-image: url(../images/logo.png);
+    background-size: 100% 100%;
+	background-position: top left;
+    width: 20%;
+	height: 20%;
+}
+
 #login-container {
     background-color: rgba(0, 0, 0, 0.5);
+    border: black solid 2px;
     color: white;
     width: 600px;
     height: 200px;
@@ -45,13 +55,13 @@ html {
 
 #login-container div label, input {
     display: block;
-    margin: auto;
+    margin: 5px;
 }
 
 #connect {
-    background-image: url("../images/Connexion_Hover_Off.png");
-    width: 247px;
-    height: 58px;
+    background-image: url("../images/btn_connect_off.png");
+    width: 174px;
+    height: 51px;
     display: block;
     align-self: center;
     border: 0;
@@ -59,5 +69,5 @@ html {
 }
 
 #connect:hover {
-    background-image: url("../images/Connexion_Hover_On.png");
+    background-image: url("../images/btn_connect_on.png");
 }

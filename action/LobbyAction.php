@@ -9,6 +9,8 @@
 
         protected function executeAction() {
             if (!empty($_GET["logout"])) {
+                $data = [];
+                $data["key"] = $_SESSION["key"];
                 $result = parent::callAPI("signout", $data);
 
                 if ($result == "SIGNED_OUT") {

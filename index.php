@@ -16,6 +16,7 @@
         <canvas id="canvas" data-full="true" class="canvas" width="1500" height="1100"></canvas>
 
         <div id="container">
+            <div id="logo"></div>
             <div id="login-container">
                 <form action="index.php" method="post">
                     <div>

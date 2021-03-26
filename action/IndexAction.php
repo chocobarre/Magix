@@ -25,7 +25,7 @@
                 }
                 else {
                     // Pour voir les informations retournées : var_dump($result);exit;
-                    $key = $result->key;
+                    $_SESSION["key"] = $result->key;
                     $_SESSION["isConnected"] = true;
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
                     header("location:lobby.php");

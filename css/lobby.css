@@ -4,7 +4,7 @@
 }
 
 html {
-    background-image: url(../images/hell.jpg);
+    background-image: url(../images/background_01.jpg);
     background-size: 100% 100%;
 	background-position: top left;
     width: 100%;
@@ -20,8 +20,16 @@ html {
     align-items: center;
 }
 
+#logo {
+    background-image: url(../images/logo.png);
+    background-size: 100% 100%;
+	background-position: top left;
+    width: 20%;
+	height: 20%;
+}
+
 #buttons {
-    width: 800px;
+    width: 700px;
     padding: 20px;
     display: flex;
     flex-direction: row;
@@ -29,9 +37,9 @@ html {
 }
 
 #pratique {
-    background-image: url("../images/Pratique_Hover_Off.png");
-    width: 247px;
-    height: 58px;
+    background-image: url("../images/btn_training_off.png");
+    width: 174px;
+    height: 51px;
     display: block;
     align-self: center;
     border: 0;
@@ -39,13 +47,13 @@ html {
 }
 
 #pratique:hover {
-    background-image: url("../images/Pratique_Hover_On.png");
+    background-image: url("../images/btn_training_on.png");
 }
 
 #jouer {
-    background-image: url("../images/Jouer_Hover_Off.png");
-    width: 247px;
-    height: 58px;
+    background-image: url("../images/btn_play_off.png");
+    width: 174px;
+    height: 51px;
     display: block;
     align-self: center;
     border: 0;
@@ -53,13 +61,13 @@ html {
 }
 
 #jouer:hover {
-    background-image: url("../images/Jouer_Hover_On.png");
+    background-image: url("../images/btn_play_on.png");
 }
 
 #quitter {
-    background-image: url("../images/Quitter_Hover_Off.png");
-    width: 247px;
-    height: 58px;
+    background-image: url("../images/btn_quit_off.png");
+    width: 174px;
+    height: 51px;
     display: block;
     align-self: center;
     border: 0;
@@ -67,5 +75,5 @@ html {
 }
 
 #quitter:hover {
-    background-image: url("../images/Quitter_Hover_On.png");
+    background-image: url("../images/btn_quit_on.png");
 }

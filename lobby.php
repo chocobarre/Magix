@@ -15,9 +15,11 @@
 
     <body>
         <div id="container">
+            <div id="logo">
+            </div>
             <div>
-                <iframe style="width:800px;height:240px;border:0" onload="applyStyles(this)" 
-                    src="https://magix.apps-de-cours.com/server/#/chat/cleici">
+                <iframe style="width:700px;height:240px;border:0" onload="applyStyles(this)" 
+                    src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
                 </iframe>
             </div>
             <div id="buttons">
