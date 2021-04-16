@@ -8,10 +8,10 @@
         }
 
         protected function executeAction() {
+            $data = [];
+            $data["key"] = $_SESSION["key"];
+
             if (!empty($_GET["logout"])) {
-                $data = [];
-                $data["key"] = $_SESSION["key"];
-                
                 $result = parent::callAPI("signout", $data);
 
                 if ($result == "SIGNED_OUT") {
@@ -22,8 +22,6 @@
                     exit;
                 }
             } else if (!empty($_GET["training"])) {
-                $data = [];
-                $data["key"] = $_SESSION["key"];
                 $data["type"] = "TRAINING";
 
                 $result = parent::callAPI("games/auto-match", $data);
@@ -33,8 +31,6 @@
                     exit;
                 }
             } else if (!empty($_GET["play"])) {
-                $data = [];
-                $data["key"] = $_SESSION["key"];
                 $data["type"] = "PVP";
 
                 $result = parent::callAPI("games/auto-match", $data);

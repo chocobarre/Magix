@@ -12,7 +12,6 @@ const state = () => {
             // Waiting on opponent
         } else if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {
             // Won game or lost game
-            update(data);
         } else {
             update(data);
         }
@@ -42,21 +41,58 @@ const update = data => {
 }
 
 btnHeroPower.onclick = () => {
-    console.log("hero power test");
+    heroPower();
 }
 
 btnEndTurn.onclick = () => {
     endTurn();
-    console.log("end turn test");
 }
 
-const endTurn = () => {
+const heroPower = () => {
+    let formData = new FormData();
+    formData.append("type", "HERO_POWER");
+    
     fetch("ajax-action.php", {
         method : "POST",
-        credentials: "include"
+        credentials: "include",
+        body : formData
     })
     .then(response => response.json())
     .then(data => {
-        update(data);
+        if (typeof data !== "object") {
+            if (data == "GAME_NOT_FOUND") {
+                // fin de la partie
+                if (data == "HERO_POWER_ALREADY_USED") {
+                    if (data == "NOT_ENOUGH_ENERGY") {
+
+                    }
+                }
+            }
+        }
+        else {
+            update(data);
+        }
+    })
+}
+
+const endTurn = () => {
+    let formData = new FormData();
+    formData.append("type", "END_TURN");
+    
+    fetch("ajax-action.php", {
+        method : "POST",
+        credentials: "include",
+        body : formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (typeof data !== "object") {
+            if (data == "GAME_NOT_FOUND") {
+                // fin de la partie
+            }
+        }
+        else {
+            update(data);
+        }
     })
 }

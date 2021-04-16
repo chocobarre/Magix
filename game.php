@@ -1,7 +1,7 @@
 <?php
-    require_once("action/GameAction.php");
+    require_once("action/AjaxActionAction.php");
 
-    $action = new GameAction();
+    $action = new AjaxActionAction();
     $data = $action->execute();
 ?>
 
@@ -52,15 +52,12 @@
                 </div>
                 <div id="power-turn-timer">
                     <div id="hero-power">
-                        <button id="btn-hero-power" type="submit"></button>
+                        <button onclick="heroPower()" id="btn-hero-power"></button>
                     </div>
                     <div id="end-turn">
-                        <a href="?endturn=true">
-                            <button id="btn-end-turn"></button>
-                        </a>
+                        <button onclick="endTurn()" id="btn-end-turn"></button>
                     </div>
                     <div id="timer">
-                        Timer
                     </div>
                 </div>
             </div>
