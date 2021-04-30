@@ -1,7 +1,7 @@
 <?php
-    require_once("action/AjaxActionAction.php");
+    require_once("action/GameAction.php");
 
-    $action = new AjaxActionAction();
+    $action = new GameAction();
     $data = $action->execute();
 ?>
 
@@ -50,6 +50,14 @@
                 </div>
                 <div id="player-cards-in-hand">
                 </div>
+
+                <template id="cards-template">
+                    <div class="id"></div>
+                    <div class="cost"></div>
+                    <div class="hp"></div>
+                    <div class="atk"></div>
+                </template>
+
                 <div id="power-turn-timer">
                     <div id="hero-power">
                         <button onclick="heroPower()" id="btn-hero-power"></button>

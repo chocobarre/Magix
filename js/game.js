@@ -14,6 +14,7 @@ const state = () => {
             // Won game or lost game
         } else {
             update(data);
+            cardsInHands(data['hand'], "cards-template");
         }
 
         setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
@@ -26,6 +27,14 @@ window.addEventListener("load", () => {
 
 let btnHeroPower = document.querySelector("#btn-hero-power");
 let btnEndTurn = document.querySelector("#btn-end-turn");
+
+btnHeroPower.onclick = () => {
+    heroPower();
+}
+
+btnEndTurn.onclick = () => {
+    endTurn();
+}
 
 const update = data => {
     // Opponent UI
@@ -40,12 +49,23 @@ const update = data => {
     document.querySelector("#timer").innerText = data.remainingTurnTime;
 }
 
-btnHeroPower.onclick = () => {
-    heroPower();
-}
+function cardsInHands(place, hand) {
+    let cards = place;
+    let templateHTML = document.getElementById(hand).innerHTML;
+    
+    document.getElementById("player-cards-in-hand").innerHTML = "";
 
-btnEndTurn.onclick = () => {
-    endTurn();
+    cards.forEach(element => {
+        let div = document.createElement("div");
+        div.className = "cards";
+        div.innerHTML = templateHTML;
+        div.querySelector(".id").innerText = "Id: " + element['id'];
+        div.querySelector(".cost").innerText = "Cost: " + element['cost'];
+        div.querySelector(".hp").innerText = "HP: " + element['hp'];
+        div.querySelector(".atk").innerText = "ATK: " + element['atk'];
+
+        document.getElementById("player-cards-in-hand").append(div);
+    })
 }
 
 const heroPower = () => {
