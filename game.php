@@ -15,7 +15,6 @@
 
     <body>
         <div id="game">
-
             <div id="opponent-UI">
                 <div id="opponent-cards-in-hand">
                     <div>
@@ -35,41 +34,45 @@
                     </div>
                 </div>
             </div>
-
             <div id="board">
+                <div id="opponent-board"></div>
+                <div id="status-text"></div>
+                <div id="player-board"></div>
+                <template id="cards-template">
+                    <div class="cost"></div>
+                    <div class="img"></div>
+                    <div class="id"></div>
+                    <div class="mechanics"></div>
+                    <div class="stats">
+                        <div class="atk"></div>
+                        <div class="hp"></div>
+                    </div>
+                </template>
             </div>
-
             <div id="player-UI">
                 <div id="player-status">
-                    <div id="player-hp">
-                    </div>
-                    <div id="player-mana">
-                    </div>
-                    <div id="player-cards-in-deck">
-                    </div>
+                    <div id="player-hp"></div>
+                    <div id="player-mana"></div>
+                    <div id="player-cards-in-deck"></div>
                 </div>
                 <div id="player-cards-in-hand">
                 </div>
-
                 <template id="cards-template">
                     <div class="id"></div>
                     <div class="cost"></div>
                     <div class="hp"></div>
                     <div class="atk"></div>
+                    <div class="mechanics"></div>
+                    <div class="uid"></div>
+                    <div class="baseHP"></div>
+                    <div class="state"></div>
                 </template>
-
                 <div id="power-turn-timer">
-                    <div id="hero-power">
-                        <button onclick="heroPower()" id="btn-hero-power"></button>
-                    </div>
-                    <div id="end-turn">
-                        <button onclick="endTurn()" id="btn-end-turn"></button>
-                    </div>
-                    <div id="timer">
-                    </div>
+                    <div id="hero-power"><button onclick="heroPower()" id="btn-hero-power"></button></div>
+                    <div id="end-turn"><button onclick="endTurn()" id="btn-end-turn"></button></div>
+                    <div id="timer"></div>
                 </div>
             </div>
-
         </div>
     </body>
 

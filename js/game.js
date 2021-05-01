@@ -9,12 +9,16 @@ const state = () => {
         //console.log(data.opponent)
 
         if (data == "WAITING") {
-            // Waiting on opponent
+            document.querySelector("#status-text").innerHTML = "WAITING FOR OPPONENT...";
         } else if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {
-            // Won game or lost game
+            if (data == "LAST_GAME_WON")
+                document.querySelector("#status-text").innerHTML = "VICTORY";
+            else if (data == "LAST_GAME_LOST")
+                document.querySelector("#status-text").innerHTML = "DEFEAT";
         } else {
+            document.querySelector("#status-text").innerHTML = "";
             update(data);
-            cardsInHands(data['hand'], "cards-template");
+            createCard(data["hand"], "#cards-template");
         }
 
         setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
@@ -49,20 +53,50 @@ const update = data => {
     document.querySelector("#timer").innerText = data.remainingTurnTime;
 }
 
-function cardsInHands(place, hand) {
-    let cards = place;
-    let templateHTML = document.getElementById(hand).innerHTML;
+function createCard(data, hand) {
+    let cards = data;
+    let templateHTML = document.querySelector(hand).innerHTML;
     
-    document.getElementById("player-cards-in-hand").innerHTML = "";
+    document.querySelector("#player-cards-in-hand").innerHTML = "";
 
     cards.forEach(element => {
         let div = document.createElement("div");
+
+        div.onclick = () => {
+            let formData = new FormData();
+            formData.append("type", "PLAY");
+            formData.append("uid", element["uid"]); 
+            
+            fetch("ajax-action.php", {
+                method : "POST",
+                credentials: "include",
+                body : formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (typeof data !== "object") {
+                    if (data == "GAME_NOT_FOUND") {
+                        
+                    }
+                }
+                else {
+                    update(data);
+                }
+            })
+        }
+
         div.className = "cards";
         div.innerHTML = templateHTML;
-        div.querySelector(".id").innerText = "Id: " + element['id'];
-        div.querySelector(".cost").innerText = "Cost: " + element['cost'];
-        div.querySelector(".hp").innerText = "HP: " + element['hp'];
-        div.querySelector(".atk").innerText = "ATK: " + element['atk'];
+        div.querySelector(".cost").innerText = element["cost"];
+        div.querySelector(".img").innerText = "Image";
+        div.querySelector(".id").innerText = element["id"];
+        div.querySelector(".mechanics").innerText = element["mechanics"];
+        div.querySelector(".atk").innerText = element["atk"];
+        div.querySelector(".hp").innerText = element["hp"];
+        /*<img class='cardImg' src='./images/" +id+ ".jpg'>*/
+        /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
+        div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
+        div.querySelector(".state").innerText = "State: " + element["state"];*/
 
         document.getElementById("player-cards-in-hand").append(div);
     })
@@ -81,10 +115,8 @@ const heroPower = () => {
     .then(data => {
         if (typeof data !== "object") {
             if (data == "GAME_NOT_FOUND") {
-                // fin de la partie
                 if (data == "HERO_POWER_ALREADY_USED") {
                     if (data == "NOT_ENOUGH_ENERGY") {
-
                     }
                 }
             }
@@ -108,7 +140,6 @@ const endTurn = () => {
     .then(data => {
         if (typeof data !== "object") {
             if (data == "GAME_NOT_FOUND") {
-                // fin de la partie
             }
         }
         else {
