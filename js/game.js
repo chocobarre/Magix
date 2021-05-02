@@ -19,6 +19,14 @@ const state = () => {
             document.querySelector("#status-text").innerHTML = "";
             update(data);
             createCard(data["hand"], "#cards-template");
+            refreshCards(data["board"], "#cards-template");
+            refreshOpponentCards(data["opponent"]["board"], "#cards-template");
+        }
+
+        if (data.yourTurn == true) {
+            document.querySelector("#status-text").innerHTML = "Your Turn";
+        } else if (data.yourTurn == false) {
+            document.querySelector("#status-text").innerHTML = "Opponent Turn";
         }
 
         setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
@@ -51,6 +59,8 @@ const update = data => {
     document.querySelector("#player-mana").innerText = data.mp;
     document.querySelector("#player-cards-in-deck").innerText = data.remainingCardsCount;
     document.querySelector("#timer").innerText = data.remainingTurnTime;
+
+
 }
 
 function createCard(data, hand) {
@@ -96,9 +106,107 @@ function createCard(data, hand) {
         /*<img class='cardImg' src='./images/" +id+ ".jpg'>*/
         /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
         div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
-        div.querySelector(".state").innerText = "State: " + element["state"];*/
+        div.querySelector(".state").innerText = element["state"];*/
 
         document.getElementById("player-cards-in-hand").append(div);
+    })
+}
+
+function refreshCards(data, board) {
+    let cards = data;
+    let templateHTML = document.querySelector(board).innerHTML;
+    
+    document.querySelector("#player-board").innerHTML = "";
+
+    cards.forEach(element => {
+        let div = document.createElement("div");
+
+        div.onclick = () => {
+            let formData = new FormData();
+            formData.append("type", "PLAY");
+            formData.append("uid", element["uid"]); 
+            
+            fetch("ajax-action.php", {
+                method : "POST",
+                credentials: "include",
+                body : formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (typeof data !== "object") {
+                    if (data == "GAME_NOT_FOUND") {
+                        
+                    }
+                }
+                else {
+                    update(data);
+                }
+            })
+        }
+
+        div.className = "cards";
+        div.innerHTML = templateHTML;
+        div.querySelector(".cost").innerText = element["cost"];
+        div.querySelector(".img").innerText = "Image";
+        div.querySelector(".id").innerText = element["id"];
+        div.querySelector(".mechanics").innerText = element["mechanics"];
+        div.querySelector(".atk").innerText = element["atk"];
+        div.querySelector(".hp").innerText = element["hp"];
+        /*<img class='cardImg' src='./images/" +id+ ".jpg'>*/
+        /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
+        div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
+        div.querySelector(".state").innerText = "State: " + element["state"];*/
+
+        document.getElementById("player-board").append(div);
+    })
+}
+
+function refreshOpponentCards(data, board) {
+    let cards = data;
+    let templateHTML = document.querySelector(board).innerHTML;
+    
+    document.querySelector("#opponent-board").innerHTML = "";
+
+    cards.forEach(element => {
+        let div = document.createElement("div");
+
+        div.onclick = () => {
+            let formData = new FormData();
+            formData.append("type", "PLAY");
+            formData.append("uid", element["uid"]); 
+            
+            fetch("ajax-action.php", {
+                method : "POST",
+                credentials: "include",
+                body : formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (typeof data !== "object") {
+                    if (data == "GAME_NOT_FOUND") {
+                        
+                    }
+                }
+                else {
+                    update(data);
+                }
+            })
+        }
+
+        div.className = "cards";
+        div.innerHTML = templateHTML;
+        div.querySelector(".cost").innerText = element["cost"];
+        div.querySelector(".img").innerText = "Image";
+        div.querySelector(".id").innerText = element["id"];
+        div.querySelector(".mechanics").innerText = element["mechanics"];
+        div.querySelector(".atk").innerText = element["atk"];
+        div.querySelector(".hp").innerText = element["hp"];
+        /*<img class='cardImg' src='./images/" +id+ ".jpg'>*/
+        /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
+        div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
+        div.querySelector(".state").innerText = "State: " + element["state"];*/
+
+        document.getElementById("opponent-board").append(div);
     })
 }
 

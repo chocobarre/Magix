@@ -103,13 +103,16 @@ body {
     flex: 5;
 
     display: flex;
+    width: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
     #opponent-board {
-        flex: 2;
+        flex: 3;
 
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -118,14 +121,16 @@ body {
     #status-text {
         flex: 1;
 
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
     #player-board {
-        flex: 2;
+        flex: 3;
 
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -189,11 +194,9 @@ body {
     #player-cards-in-hand {
         flex: 4;
 
-        display: flex;
-        justify-content: space-evenly;
+        display: inline-flex;
+        justify-content: center;
         align-items: center;
-
-        padding: 20px;
     }
 
     /* ========== Cartes ========== */
@@ -203,7 +206,14 @@ body {
         flex-direction: column;
         height: 80%;
         width: 10%;
-        background-color: lightslategray;
+        margin: 10px;
+        background-color: black;
+        border: solid white 1px;
+    }
+
+    .cards:hover {
+        border: solid yellow 1px;
+        cursor:pointer;
     }
 
         .cards .cost {
