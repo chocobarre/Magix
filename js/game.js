@@ -18,15 +18,16 @@ const state = () => {
         } else {
             document.querySelector("#status-text").innerHTML = "";
             update(data);
-            createCard(data["hand"], "#cards-template");
-            refreshCards(data["board"], "#cards-template");
-            refreshOpponentCards(data["opponent"]["board"], "#cards-template");
+
+            createHand(data["hand"], "#cards-template");
+            refreshPlayerBoard(data["board"], "#cards-template");
+            refreshOpponentBoard(data["opponent"]["board"], "#cards-template");
         }
 
         if (data.yourTurn == true) {
-            document.querySelector("#status-text").innerHTML = "Your Turn";
+            document.querySelector("#status-text").innerText = "Your Turn " + "(" + data.remainingTurnTime + " seconds remaining)";
         } else if (data.yourTurn == false) {
-            document.querySelector("#status-text").innerHTML = "Opponent Turn";
+            document.querySelector("#status-text").innerText = "Opponent Turn " + "(" + data.opponent.remainingTurnTime + " seconds remaining)";
         }
 
         setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
@@ -58,12 +59,9 @@ const update = data => {
     document.querySelector("#player-hp").innerText = data.hp;
     document.querySelector("#player-mana").innerText = data.mp;
     document.querySelector("#player-cards-in-deck").innerText = data.remainingCardsCount;
-    document.querySelector("#timer").innerText = data.remainingTurnTime;
-
-
 }
 
-function createCard(data, hand) {
+function createHand(data, hand) {
     let cards = data;
     let templateHTML = document.querySelector(hand).innerHTML;
     
@@ -86,7 +84,6 @@ function createCard(data, hand) {
             .then(data => {
                 if (typeof data !== "object") {
                     if (data == "GAME_NOT_FOUND") {
-                        
                     }
                 }
                 else {
@@ -112,7 +109,7 @@ function createCard(data, hand) {
     })
 }
 
-function refreshCards(data, board) {
+function refreshPlayerBoard(data, board) {
     let cards = data;
     let templateHTML = document.querySelector(board).innerHTML;
     
@@ -135,7 +132,6 @@ function refreshCards(data, board) {
             .then(data => {
                 if (typeof data !== "object") {
                     if (data == "GAME_NOT_FOUND") {
-                        
                     }
                 }
                 else {
@@ -161,7 +157,7 @@ function refreshCards(data, board) {
     })
 }
 
-function refreshOpponentCards(data, board) {
+function refreshOpponentBoard(data, board) {
     let cards = data;
     let templateHTML = document.querySelector(board).innerHTML;
     
@@ -184,7 +180,6 @@ function refreshOpponentCards(data, board) {
             .then(data => {
                 if (typeof data !== "object") {
                     if (data == "GAME_NOT_FOUND") {
-                        
                     }
                 }
                 else {
@@ -208,6 +203,39 @@ function refreshOpponentCards(data, board) {
 
         document.getElementById("opponent-board").append(div);
     })
+}
+
+const attacker = (uid) => {
+    if (selectedCard === uid) {
+        selectedCard = "";
+    } else {
+        selectedCard = uid;
+    }
+}
+
+const target = (uid) => {
+    if (selectedCard !== "") {
+        target = uid;
+    } else if (target === uid) {
+        let formData = new FormData();
+        formData.append("type", "ATTACK");
+        formData.append("uid", selectedCard.toString()); 
+        formData.append("targetuid", target.toString());
+
+        fetch("ajax-moves.php", {
+            method : "POST",
+            credentials : "include", // Pour envoyer les cookies
+            body : formData
+        })
+        .then(response => response.json()) // JSON.parse
+        .then(data => {
+            console.log(data);
+            update(data);
+        })
+    }
+
+    target = "";
+    selectedCard = "";
 }
 
 const heroPower = () => {
@@ -254,4 +282,14 @@ const endTurn = () => {
             update(data);
         }
     })
+}
+
+const applyStyles = iframe => {
+	let styles = {
+		fontColor : "#FFFFFF",
+		backgroundColor : "rgba(0, 0, 0, 0.7)",
+		fontGoogleName : "Sofia",
+		fontSize : "20px",
+	}
+	iframe.contentWindow.postMessage(JSON.stringify(styles), "*");	
 }

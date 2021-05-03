@@ -24,7 +24,6 @@
                     $hasConnectionError = true;
                 }
                 else {
-                    // Pour voir les informations retournées : var_dump($result);exit;
                     $_SESSION["key"] = $result->key;
                     $_SESSION["isConnected"] = true;
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;
@@ -32,7 +31,5 @@
 					exit;
                 }
 			}
-
-			//return compact("hasConnectionError");
         }
     }

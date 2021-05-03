@@ -14,6 +14,14 @@ body {
 }
 
 #game {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#top {
+    flex: 4;
+
     background-image: url(../images/Environment_Darkwood.jpg);
     background-size: cover;
     height: 100%;
@@ -22,76 +30,84 @@ body {
     justify-content: center;
 }
 
+#bottom {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========== Besoin pour le status du joueur et de l'opponent ========== */
+
+#left{
+    flex: 3;
+    display: flex;
+}
+
+#middle {
+    flex: 1;
+    display: flex;
+}
+
+#right {
+    flex: 3;
+    display: flex;
+}
+
 /* ========== Interface de l'opponent ========== */
 
 #opponent-UI {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+}
+
+    #opponent-cards-in-hand {
+        flex: 4;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+#opponent-status {
     background-color: rgba(0, 0, 0, 0.5);
     flex: 1;
     display: flex;
     flex-direction: row;
 }
 
-    #opponent-cards-in-hand {
+    #opponent-mana {
         flex: 1;
-
-        display: flex;
-        justify-content: left;
-        align-items: center;
-
-        background-image: url(../images/Small_Card_Back.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 50px 90px;
-    }
-
-    #opponent-status {
-        flex: 1;
-
-        display: flex;
-        flex-direction: row;
-    }
-
-        #opponent-hp {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-image: url(../images/life.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 80px 80px;
-            flex: 1;
-        }
-
-        #opponent-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            flex: 2;
-        }
-
-        #opponent-mana {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-image: url(../images/mana.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 80px 80px;
-
-            flex: 1;
-        }
-
-    #opponent-cards-in-deck {
-        flex: 1;
-
         display: flex;
         justify-content: center;
         align-items: center;
+        background-image: url(../images/mana.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 80% 80%;
+    }
 
-        background-image: url(../images/Small_Card_Back_No_Logo.png);
+    #opponent-hp {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../images/life.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 90% 90%;
+    }
+
+    #opponent-cards-in-deck {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*background-image: url(../images/Small_Card_Back_No_Logo.png);*/
         background-position: center;
         background-repeat: no-repeat;
         background-size: 70px 110px;
@@ -145,58 +161,51 @@ body {
     flex-direction: row;
 }
 
-    #player-status {
-        flex: 1;
-
-        display: flex;
-        flex-direction: column;
-    }
-
-        #player-hp {
-            flex: 1;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-image: url(../images/life.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 50px 50px;
-        }
-
-        #player-mana {
-            flex: 1;
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-image: url(../images/mana.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 50px 50px;
-        }
-
-        #player-cards-in-deck {
-            flex: 1;
-            
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background-image: url(../images/Small_Card_Back_No_Logo.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 50px 70px;
-        }
-
     #player-cards-in-hand {
         flex: 4;
-
         display: inline-flex;
         justify-content: center;
         align-items: center;
+    }
+
+#player-status {
+    background-color: rgba(0, 0, 0, 0.5);
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+    #player-mana  {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../images/mana.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 80% 80%;
+    }
+
+    #player-hp {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(../images/life.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 90% 90%;
+    }
+
+    #player-cards-in-deck {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*background-image: url(../images/Small_Card_Back_No_Logo.png);*/
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 70px 110px;
     }
 
     /* ========== Cartes ========== */
