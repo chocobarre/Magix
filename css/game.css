@@ -4,7 +4,6 @@
 }
 
 html {
-    background-image: url(../images/background_01.jpg);
     color: white;
     height: 100%;
 }
@@ -19,25 +18,72 @@ body {
     height: 100%;
 }
 
-#top {
-    flex: 4;
+/* ========== Cartes ========== */
 
-    background-image: url(../images/Environment_Darkwood.jpg);
-    background-size: cover;
-    height: 100%;
+.cards {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+
+    background-color: royalblue;
+    border: solid black 2px;
+    width: 200px;
+    height: 95%;
 }
 
-#bottom {
+.cards:hover {
+    border: solid white 2px;
+    cursor: pointer;
+}
+
+.img {
     flex: 1;
-    height: 100%;
+    width: 95%;
+    height: 90px;
+    display: block;
+    padding-top: 5px;
+    margin: auto;
+}
+
+.mechanics {
+    background-color: white;
+    flex: 5;
     display: flex;
-    flex-direction: column;
+    margin: auto;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
     justify-content: center;
     align-items: center;
+    color: black;
 }
+
+.cost-atk-hp {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+    .cost {
+        flex: 1;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .atk {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hp {
+        flex: 1;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
 
 /* ========== Besoin pour le status du joueur et de l'opponent ========== */
 
@@ -49,86 +95,74 @@ body {
 #middle {
     flex: 1;
     display: flex;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #right {
     flex: 3;
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ========== Interface de l'opponent ========== */
 
 #opponent-UI {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-image: url(../images/background.jpg);
+    background-position: center;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
 
+#opponent-hand {
     flex: 2;
     display: flex;
     flex-direction: row;
-}
-
-    #opponent-cards-in-hand {
-        flex: 4;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-#opponent-status {
-    background-color: rgba(0, 0, 0, 0.5);
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-}
-
-    #opponent-mana {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-image: url(../images/mana.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 80% 80%;
-    }
-
-    #opponent-hp {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-image: url(../images/life.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 90% 90%;
-    }
-
-    #opponent-cards-in-deck {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        /*background-image: url(../images/Small_Card_Back_No_Logo.png);*/
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 70px 110px;
-    }
-
-/* ========== Board du jeu ========== */
-
-#board {
-    flex: 5;
-
-    display: flex;
-    width: 100%;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+/* ========== Interface du joueur ========== */
+
+#player-UI {
+    background-image: url(../images/background.jpg);
+    background-position: center;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#player-hand {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+/* ========== Board du jeu ========== */
+
+#big-board {
+    flex: 6;
+    display: flex;
+    background-image: url(../images/Environment_Bilefen.jpg);
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+#board-middle {
+    flex: 7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
     #opponent-board {
         flex: 3;
-
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -136,8 +170,6 @@ body {
 
     #status-text {
         flex: 1;
-
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -145,56 +177,122 @@ body {
 
     #player-board {
         flex: 3;
-
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-/* ========== Interface du joueur ========== */
+/* ====================================================================== */
+/* Player and Opponent HP, Mana, etc. */
+/* ====================================================================== */
 
-#player-UI {
+#board-left {
     background-color: rgba(0, 0, 0, 0.5);
-    flex: 2;
+    flex: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-    #player-cards-in-hand {
-        flex: 4;
-        display: inline-flex;
+#opponent-status {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    #opponent-name {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #opponent-hp {
+        flex: 1;
+        background-image: url(../images/life.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50% 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #opponent-mana {
+        flex: 1;
+        background-image: url(../images/mana.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50% 50%;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
 #player-status {
-    background-color: rgba(0, 0, 0, 0.5);
     flex: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
 }
 
-    #player-mana  {
+    #player-name {
         flex: 1;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-image: url(../images/mana.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 80% 80%;
     }
 
     #player-hp {
         flex: 1;
+        background-image: url(../images/life.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50% 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;;
+    }
+
+    #player-mana  {
+        flex: 1;
+        background-image: url(../images/mana.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 50% 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+/* ====================================================================== */
+/* Player & Opponent cards left in deck */
+/* ====================================================================== */
+
+#board-right {
+    background-color: rgba(0, 0, 0, 0.5);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+    #opponent-cards-in-deck {
+        flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url(../images/life.png);
+
+        background-image: url(../images/card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 90% 90%;
+        background-size: 50% 50%;
     }
 
     #player-cards-in-deck {
@@ -202,122 +300,55 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        /*background-image: url(../images/Small_Card_Back_No_Logo.png);*/
+
+        background-image: url(../images/card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 70px 110px;
+        background-size: 50% 50%;
     }
 
-    /* ========== Cartes ========== */
+/* ====================================================================== */
+/* Hero Power & End Turn */
+/* ====================================================================== */
 
-    .cards {
-        display: flex;
-        flex-direction: column;
-        height: 80%;
-        width: 10%;
-        margin: 10px;
-        background-color: black;
-        border: solid white 1px;
+#hero-power {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    #btn-hero-power {
+        background-image: url("../images/btn_hero_power_off.png");
+        width: 174px;
+        height: 51px;
+        display: block;
+        align-self: center;
+        border: 0;
+        cursor: pointer;
     }
 
-    .cards:hover {
-        border: solid yellow 1px;
-        cursor:pointer;
+    #btn-hero-power:hover {
+        background-image: url("../images/btn_hero_power_on.png");
     }
 
-        .cards .cost {
-            flex: 1;
-            text-align: left;
-        }
+#end-turn {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .cards .img {
-            flex: 2;
-            text-align: center;
-        }
-
-        .cards .id {
-            flex: 1;
-            text-align: center;
-        }
-
-        .cards .mechanics {
-            flex: 2;
-            text-align: center;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-
-        .cards .stats {
-            flex: 1;
-            display: flex;
-            flex-direction: row;
-        }
-
-            .cards .stats .atk {
-                flex: 1;
-                text-align: left;
-            }
-
-            .cards .stats .hp {
-                flex: 1;
-                text-align: right;
-            }
-
-    #power-turn-timer {
-        flex: 1;
-
-        display: flex;
-        flex-direction: column;
+    #btn-end-turn {
+        background-image: url("../images/btn_end_turn_off.png");
+        width: 174px;
+        height: 51px;
+        display: block;
+        align-self: center;
+        border: 0;
+        cursor: pointer;
     }
 
-        #hero-power {
-            flex: 1;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-            #btn-hero-power {
-                background-image: url("../images/btn_hero_power_off.png");
-                width: 174px;
-                height: 51px;
-                display: block;
-                align-self: center;
-                border: 0;
-                cursor: pointer;
-            }
-
-            #btn-hero-power:hover {
-                background-image: url("../images/btn_hero_power_on.png");
-            }
-
-        #end-turn {
-            flex: 1;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-            #btn-end-turn {
-                background-image: url("../images/btn_end_turn_off.png");
-                width: 174px;
-                height: 51px;
-                display: block;
-                align-self: center;
-                border: 0;
-                cursor: pointer;
-            }
-
-            #btn-end-turn:hover {
-                background-image: url("../images/btn_end_turn_on.png");
-            }
-
-        #timer {
-            flex: 1;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    #btn-end-turn:hover {
+        background-image: url("../images/btn_end_turn_on.png");
+    }
