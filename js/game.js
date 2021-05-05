@@ -9,25 +9,32 @@ const state = () => {
         //console.log(data.opponent)
 
         if (data == "WAITING") {
-            document.querySelector("#status-text").innerHTML = "Waiting for opponent...";
+            document.querySelector("#status-middle").innerHTML = "Waiting for opponent...";
         } else if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {
-            if (data == "LAST_GAME_WON")
-                document.querySelector("#status-text").innerHTML = "VICTORY";
-            else if (data == "LAST_GAME_LOST")
-                document.querySelector("#status-text").innerHTML = "DEFEAT";
+            if (data == "LAST_GAME_WON") {
+                document.querySelector("#status-middle").innerHTML = "VICTORY";
+                document.querySelector("#end-turn").style.visibility = "hidden";
+            } else if (data == "LAST_GAME_LOST") {
+                document.querySelector("#status-middle").innerHTML = "DEFEAT";
+                document.querySelector("#end-turn").style.visibility = "hidden";
+            }
         } else {
-            document.querySelector("#status-text").innerHTML = "";
+            document.querySelector("#status-middle").innerHTML = "";
             update(data);
 
-            createHand(data["hand"], "#cards-template");
-            refreshPlayerBoard(data["board"], "#cards-template");
-            refreshOpponentBoard(data["opponent"]["board"], "#cards-template");
+            updatePlayerHand(data["hand"], "#cards-template");
+            //console.log(data["opponent"]);
+            updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
+            updatePlayerBoard(data["board"], "#cards-template");
+            updateOpponentBoard(data["opponent"]["board"], "#opponent-cards-template");
         }
 
         if (data.yourTurn == true) {
-            document.querySelector("#status-text").innerText = "Your Turn " + "(" + data.remainingTurnTime + " seconds remaining)";
+            document.querySelector("#status-middle").innerText = "Your Turn " + "(" + data.remainingTurnTime + " seconds remaining)";
+            document.querySelector("#end-turn").style.visibility = "visible";
         } else if (data.yourTurn == false) {
-            document.querySelector("#status-text").innerText = "Opponent Turn " + "(" + data.remainingTurnTime + " seconds remaining)";
+            document.querySelector("#status-middle").innerText = "Opponent Turn " + "(" + data.remainingTurnTime + " seconds remaining)";
+            document.querySelector("#end-turn").style.visibility = "hidden";
         }
 
         setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
@@ -52,9 +59,11 @@ btnEndTurn.onclick = () => {
 const update = data => {
     // Opponent UI
     document.querySelector("#opponent-hp").innerText = "HP: " + data.opponent.hp;
+    document.querySelector("#img-middle").innerText = data.opponent.hp;
+
     document.querySelector("#opponent-mana").innerText = "MP : " + data.opponent.mp;
     document.querySelector("#opponent-cards-in-deck").innerText = data.opponent.remainingCardsCount;
-    document.querySelector("#opponent-name").innerText = data.className;
+    document.querySelector("#opponent-name").innerText = data.opponent.heroClass;
 
     // Player UI
     document.querySelector("#player-hp").innerText = "HP: " + data.hp;
@@ -62,7 +71,7 @@ const update = data => {
     document.querySelector("#player-cards-in-deck").innerText = data.remainingCardsCount;
 }
 
-function createHand(data, hand) {
+function updatePlayerHand(data, hand) {
     let cards = data;
     let templateHTML = document.querySelector(hand).innerHTML;
     
@@ -96,24 +105,33 @@ function createHand(data, hand) {
         div.className = "cards";
         div.innerHTML = templateHTML;
         div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
-        //div.querySelector(".id").innerText = "#" + element["id"];
         div.querySelector(".mechanics").innerText = element["mechanics"];
         div.querySelector(".cost").innerText = "Cost: " + element["cost"];
         div.querySelector(".atk").innerText = "ATK: " + element["atk"];
         div.querySelector(".hp").innerText = "HP: " + element["hp"];
-        /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
-        div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
-        div.querySelector(".state").innerText = "State: " + element["state"];*/
 
-        document.getElementById("player-hand").append(div);
+        document.querySelector("#player-hand").append(div);
     })
 }
 
-function createOpponentHand(data, hand) {
+function updateOpponentHand(data, hand) {
+    let cards = data;
+    let templateHTML = document.querySelector(hand).innerHTML;
+    //console.log(data, hand);
 
+    document.querySelector("#opponent-hand").innerHTML = "";
+
+    for (i = 0; i < cards.handSize; i++) {
+        let div = document.createElement("div");
+
+        div.className = "cardsOpponentHand";
+        div.innerHTML = templateHTML;
+
+        document.querySelector("#opponent-hand").append(div);
+    }
 }
 
-function refreshPlayerBoard(data, board) {
+function updatePlayerBoard(data, board) {
     let cards = data;
     let templateHTML = document.querySelector(board).innerHTML;
     
@@ -147,20 +165,16 @@ function refreshPlayerBoard(data, board) {
         div.className = "cards";
         div.innerHTML = templateHTML;
         div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
-        //div.querySelector(".id").innerText = "#" + element["id"];
         div.querySelector(".mechanics").innerText = element["mechanics"];
         div.querySelector(".cost").innerText = "Cost: " + element["cost"];
         div.querySelector(".atk").innerText = "ATK: " + element["atk"];
         div.querySelector(".hp").innerText = "HP: " + element["hp"];
-        /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
-        div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
-        div.querySelector(".state").innerText = "State: " + element["state"];*/
 
-        document.getElementById("player-board").append(div);
+        document.querySelector("#player-board").append(div);
     })
 }
 
-function refreshOpponentBoard(data, board) {
+function updateOpponentBoard(data, board) {
     let cards = data;
     let templateHTML = document.querySelector(board).innerHTML;
     
@@ -191,41 +205,39 @@ function refreshOpponentBoard(data, board) {
             })
         }
 
-        div.className = "cards";
+        div.className = "cardsOpponent";
         div.innerHTML = templateHTML;
         div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
-        //div.querySelector(".id").innerText = "#" + element["id"];
         div.querySelector(".mechanics").innerText = element["mechanics"];
         div.querySelector(".cost").innerText = "Cost: " + element["cost"];
         div.querySelector(".atk").innerText = "ATK: " + element["atk"];
         div.querySelector(".hp").innerText = "HP: " + element["hp"];
-        /*div.querySelector(".uid").innerText = "UID: " + element["uid"];
-        div.querySelector(".baseHP").innerText = "BaseHP: " + element["baseHP"];
-        div.querySelector(".state").innerText = "State: " + element["state"];*/
 
-        document.getElementById("opponent-board").append(div);
+        document.querySelector("#opponent-board").append(div);
     })
 }
 
 const attacker = (uid) => {
-    if (selectedCard == uid) {
+    console.log("Attacker");
+    document.querySelector("#status-middle").innerText = "Attacker";
+    if (selectedCard === uid) {
         selectedCard = "";
-    } else {
+    } else{
         selectedCard = uid;
     }
 }
 
 const target = (uid) => {
-    if (selectedCard != "") {
+    console.log("Target");
+    if (selectedCard !== "") {
         target = uid;
     }
-    
-    if (target == uid) {
+
+    if (target === uid) {
         let formData = new FormData();
         formData.append("type", "ATTACK");
         formData.append("uid", selectedCard.toString()); 
         formData.append("targetuid", target.toString());
-
         fetch("ajax-moves.php", {
             method : "POST",
             credentials : "include",
@@ -234,7 +246,6 @@ const target = (uid) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            update(data);
         })
     }
 

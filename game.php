@@ -17,19 +17,12 @@
         <div id="game">
             <div id="opponent-UI">
 
-                <div id="opponent-hand">
-                    <template id="cards-template">
-                        <div class="img"></div>
-                        <div class="mechanics"></div>
-                        <div class="cost-atk-hp">
-                            <div class="cost"></div>
-                            <div class="atk"></div>
-                            <div class="hp"></div>
-                        </div>
-                    </template>
+                <div id="opponent-hand"></div>
+                <div id="opponent-UI-middle">
+                    <img id="img-middle" src="images/DarkOrbBorder.png" alt="Opponent HP">
                 </div>
+                <div id="opponent-UI-right"></div>
 
-                <div id="opponent-border"></div>
             </div>
 
             <div id="big-board">
@@ -47,12 +40,12 @@
                         <div id="player-mana"></div>
                     </div>
                     <div id="hero-power"><button onclick="heroPower()" id="btn-hero-power"></button></div>
-                    <div id="end-turn"><button onclick="endTurn()" id="btn-end-turn"></button></div>
                 </div>
 
                 <div id="board-middle">
+
                     <div id="opponent-board"></div>
-                    <template id="cards-template">
+                    <template id="opponent-cards-template">
                         <div class="img"></div>
                         <div class="mechanics"></div>
                         <div class="cost-atk-hp">
@@ -62,7 +55,13 @@
                         </div>
                     </template>
 
-                    <div id="status-text"></div>
+                    <div id="status-text">
+                        <div id="status-left"></div>
+                        <div id="status-middle"></div>
+                        <div id="status-right">
+                            <div id="end-turn"><button onclick="endTurn()" id="btn-end-turn"></button></div>
+                        </div>
+                    </div>
 
                     <div id="player-board"></div>
                     <template id="cards-template">
@@ -74,6 +73,7 @@
                             <div class="hp"></div>
                         </div>
                     </template>
+
                 </div>
 
                 <div id="board-right">
@@ -83,8 +83,9 @@
             </div>
 
             <div id="player-UI">
-                <div id="player-hand">
-                    <template id="cards-template">
+
+                <div id="player-hand"></div>
+                <template id="cards-template">
                         <div class="img"></div>
                         <div class="mechanics"></div>
                         <div class="cost-atk-hp">
@@ -92,9 +93,10 @@
                             <div class="atk"></div>
                             <div class="hp"></div>
                         </div>
-                    </template>
-                </div>
+                </template>
+
             </div>
         </div>
     </body>
+    <template id="opponent-cards-template-hand"></template>
 </html>

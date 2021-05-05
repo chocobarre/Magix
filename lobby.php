@@ -17,7 +17,7 @@
         <div id="container">
             <div id="logo"></div>
             <div id="chat">
-                <iframe style="width:700px;height:500px;border:0" onload="applyStyles(this)" 
+                <iframe style="width:1500px;height:500px;border:0" onload="applyStyles(this)" 
                     src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>">
                 </iframe>
             </div>

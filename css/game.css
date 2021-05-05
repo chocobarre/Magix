@@ -13,25 +13,110 @@ body {
 }
 
 #game {
+    background-image: url(../images/background.jpg);
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-/* ========== Cartes ========== */
+/* ========== Opponent Cards Hand ========== */
+
+.cardsOpponentHand {
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    /*background-image: url(../images/logo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 50%;*/
+    border: solid black 5px;
+    width: 80px;
+    height: 70%;
+    box-shadow: 4px 3px 8px 1px black;
+}
+
+/* ========== Opponent Cards ========== */
+
+.cardsOpponent {
+    display: flex;
+    flex-direction: column;
+    background-color: green;
+    border: solid black 5px;
+    width: 200px;
+    height: 95%;
+    box-shadow: 4px 3px 8px 1px black;
+}
+
+.cardsOpponent:hover {
+    border: solid white 5px;
+    cursor: pointer;
+}
+
+.cardsOpponent .img {
+    flex: 1;
+    width: 95%;
+    height: 90px;
+    display: block;
+    padding-top: 5px;
+    margin: auto;
+}
+
+.cardsOpponent .mechanics {
+    background-color: white;
+    border: solid black 2px;
+    flex: 5;
+    display: flex;
+    margin: auto;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.cardsOpponent .cost-atk-hp {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+
+    .cardsOpponent .cost {
+        flex: 1;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+    }
+
+    .cardsOpponent .atk {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cardsOpponent .hp {
+        flex: 1;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+
+/* ========== Player Cards ========== */
 
 .cards {
     display: flex;
     flex-direction: column;
-
     background-color: royalblue;
-    border: solid black 2px;
+    border: solid black 5px;
     width: 200px;
     height: 95%;
+    box-shadow: 4px 3px 8px 1px black;
 }
 
 .cards:hover {
-    border: solid white 2px;
+    border: solid white 5px;
     cursor: pointer;
 }
 
@@ -46,6 +131,7 @@ body {
 
 .mechanics {
     background-color: white;
+    border: solid black 2px;
     flex: 5;
     display: flex;
     margin: auto;
@@ -87,7 +173,7 @@ body {
 
 /* ========== Besoin pour le status du joueur et de l'opponent ========== */
 
-#left{
+#left {
     flex: 3;
     display: flex;
 }
@@ -110,26 +196,57 @@ body {
 /* ========== Interface de l'opponent ========== */
 
 #opponent-UI {
-    background-image: url(../images/background.jpg);
-    background-position: center;
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-}
-
-#opponent-hand {
-    flex: 2;
+    background-image: url(../images/border_01.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    flex: 1;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
 }
+
+    #opponent-hand {
+        /*background-image: url(../images/DarkOrbBorder.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        z-index: 1;*/
+
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    #opponent-UI-middle {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    #img-middle {
+        position: absolute;
+    }
+
+    #opponent-UI-right {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
 
 /* ========== Interface du joueur ========== */
 
 #player-UI {
-    background-image: url(../images/background.jpg);
-    background-position: center;
+    background-image: url(../images/border_02.png);
+    background-repeat: repeat-x;
+    background-position: top;
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -141,13 +258,15 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    gap: 20px;
 }
 
 /* ========== Board du jeu ========== */
 
 #big-board {
-    flex: 6;
+    flex: 4;
     display: flex;
     background-image: url(../images/Environment_Bilefen.jpg);
     background-position: center;
@@ -166,6 +285,9 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     #status-text {
@@ -175,11 +297,28 @@ body {
         align-items: center;
     }
 
+        #status-left { flex: 1; }
+        #status-middle {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #status-right {
+            flex: 1;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+        }
+
     #player-board {
         flex: 3;
         display: flex;
         justify-content: center;
         align-items: center;
+        gap: 20px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
 /* ====================================================================== */
@@ -288,11 +427,12 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: green;
 
-        background-image: url(../images/card.png);
+        /*background-image: url(../images/card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50% 50%;
+        background-size: 50% 50%;*/
     }
 
     #player-cards-in-deck {
@@ -300,11 +440,12 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: royalblue;
 
-        background-image: url(../images/card.png);
+        /*background-image: url(../images/card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50% 50%;
+        background-size: 50% 50%;*/
     }
 
 /* ====================================================================== */
