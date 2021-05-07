@@ -19,7 +19,7 @@
 
                 <div id="opponent-hand"></div>
                 <div id="opponent-UI-middle">
-                    <img id="img-middle" src="images/DarkOrbBorder.png" alt="Opponent HP">
+                    <img id="img-middle" src="images/hp.png" alt="Opponent HP">
                 </div>
                 <div id="opponent-UI-right"></div>
 
@@ -43,18 +43,7 @@
                 </div>
 
                 <div id="board-middle">
-
                     <div id="opponent-board"></div>
-                    <template id="opponent-cards-template">
-                        <div class="img"></div>
-                        <div class="mechanics"></div>
-                        <div class="cost-atk-hp">
-                            <div class="cost"></div>
-                            <div class="atk"></div>
-                            <div class="hp"></div>
-                        </div>
-                    </template>
-
                     <div id="status-text">
                         <div id="status-left"></div>
                         <div id="status-middle"></div>
@@ -62,18 +51,7 @@
                             <div id="end-turn"><button onclick="endTurn()" id="btn-end-turn"></button></div>
                         </div>
                     </div>
-
                     <div id="player-board"></div>
-                    <template id="cards-template">
-                        <div class="img"></div>
-                        <div class="mechanics"></div>
-                        <div class="cost-atk-hp">
-                            <div class="cost"></div>
-                            <div class="atk"></div>
-                            <div class="hp"></div>
-                        </div>
-                    </template>
-
                 </div>
 
                 <div id="board-right">
@@ -83,20 +61,32 @@
             </div>
 
             <div id="player-UI">
-
                 <div id="player-hand"></div>
-                <template id="cards-template">
-                        <div class="img"></div>
-                        <div class="mechanics"></div>
-                        <div class="cost-atk-hp">
-                            <div class="cost"></div>
-                            <div class="atk"></div>
-                            <div class="hp"></div>
-                        </div>
-                </template>
-
             </div>
         </div>
     </body>
+
     <template id="opponent-cards-template-hand"></template>
+
+    <template id="opponent-cards-template">
+        <div class="img"></div>
+        <div class="mechanics"></div>
+        <div class="cost-atk-hp">
+            <div class="cost"></div>
+            <div class="atk"></div>
+            <div class="hp"></div>
+        </div>
+    </template>
+
+    <template id="cards-template">
+        <div class="img"></div>
+        <div class="mechanics"></div>
+        <div class="state"></div>
+        <div class="cost-atk-hp">
+            <div class="cost"></div>
+            <div class="atk"></div>
+            <div class="hp"></div>
+        </div>
+    </template>
+
 </html>

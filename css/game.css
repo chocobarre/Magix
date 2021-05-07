@@ -427,12 +427,11 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: green;
 
-        /*background-image: url(../images/card.png);
+        background-image: url(../images/card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50% 50%;*/
+        background-size: 50% 50%;
     }
 
     #player-cards-in-deck {
@@ -440,12 +439,11 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: royalblue;
 
-        /*background-image: url(../images/card.png);
+        background-image: url(../images/card.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50% 50%;*/
+        background-size: 50% 50%;
     }
 
 /* ====================================================================== */
