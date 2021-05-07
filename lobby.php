@@ -28,6 +28,9 @@
                 <a href="?play=true">
                     <button id="play" name="play"></button>
                 </a>
+                <a href="?coop=true">
+                    <button id="coop" name="coop"></button>
+                </a>
                 <a href="?logout=true">
                     <button id="quit" name="quit"></button>
                 </a>

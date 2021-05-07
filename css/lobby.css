@@ -34,6 +34,7 @@ html {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 10px;
 }
 
 #training {
@@ -62,6 +63,20 @@ html {
 
 #play:hover {
     background-image: url("../images/btn_play_on.png");
+}
+
+#coop {
+    background-image: url("../images/btn_quit_off.png");
+    width: 174px;
+    height: 51px;
+    display: block;
+    align-self: center;
+    border: 0;
+    cursor: pointer;
+}
+
+#coop:hover {
+    background-image: url("../images/btn_quit_on.png");
 }
 
 #quit {

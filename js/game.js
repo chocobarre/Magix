@@ -5,11 +5,12 @@ const state = () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data); // contient les cartes/état du jeu.
+        //console.log(data);
         //console.log(data.opponent)
 
         if (data == "WAITING") {
             document.querySelector("#status-middle").innerHTML = "Waiting for opponent...";
+            document.querySelector("#end-turn").style.visibility = "hidden";
         } else if (data == "LAST_GAME_WON" || data == "LAST_GAME_LOST") {
             if (data == "LAST_GAME_WON") {
                 document.querySelector("#status-middle").innerHTML = "VICTORY";
@@ -92,9 +93,9 @@ opponentHero.onclick = () => {
 const update = data => {
     // Opponent
     document.querySelector("#opponent-hp").innerText = "HP: " + data.opponent.hp;
-    document.querySelector("#img-middle").innerText = data.opponent.hp;
+    document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.hp;
+    document.querySelector("#opponent-UI-middle-right").innerText = data.opponent.mp;
 
-    document.querySelector("#opponent-mana").innerText = "MP : " + data.opponent.mp;
     document.querySelector("#opponent-cards-in-deck").innerText = data.opponent.remainingCardsCount;
     document.querySelector("#opponent-name").innerText = data.opponent.heroClass;
 
@@ -143,11 +144,10 @@ function updatePlayerHand(data, hand) {
 
         div.className = "cards";
         div.innerHTML = templateHTML;
-        div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
+        div.querySelector(".img").innerHTML += "<img class='img' src='./images/card_02.png'></img>";
         div.querySelector(".mechanics").innerText = element["mechanics"];
-        div.querySelector(".cost").innerText = "Cost: " + element["cost"];
-        div.querySelector(".atk").innerText = "ATK: " + element["atk"];
-        div.querySelector(".hp").innerText = "HP: " + element["hp"];
+        div.querySelector(".cost").innerText = element["cost"];
+        div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
         document.querySelector("#player-hand").append(div);
     })
@@ -194,10 +194,13 @@ function updatePlayerBoard(data, board) {
         div.innerHTML = templateHTML;
         div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
         div.querySelector(".mechanics").innerText = element["mechanics"];
-        div.querySelector(".state").innerText = element["state"];
-        div.querySelector(".cost").innerText = "Cost: " + element["cost"];
-        div.querySelector(".atk").innerText = "ATK: " + element["atk"];
-        div.querySelector(".hp").innerText = "HP: " + element["hp"];
+
+        if (element["state"] == "SLEEP") {
+            div.querySelector(".state").innerText = element["state"];
+        }
+        
+        div.querySelector(".cost").innerText = element["cost"];
+        div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
         document.querySelector("#player-board").append(div);
 
@@ -227,9 +230,8 @@ function updateOpponentBoard(data, board) {
         div.innerHTML = templateHTML;
         div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
         div.querySelector(".mechanics").innerText = element["mechanics"];
-        div.querySelector(".cost").innerText = "Cost: " + element["cost"];
-        div.querySelector(".atk").innerText = "ATK: " + element["atk"];
-        div.querySelector(".hp").innerText = "HP: " + element["hp"];
+        div.querySelector(".cost").innerText = element["cost"];
+        div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
         document.querySelector("#opponent-board").append(div);
 
@@ -237,9 +239,6 @@ function updateOpponentBoard(data, board) {
             if (attackerSelected == true) {
                 targetCard = element.uid;
                 targetSelected = true;
-
-                console.log(attackerCard + " attacking " + targetCard);
-
                 attack(attackerCard, targetCard);
             }
         }
@@ -259,8 +258,10 @@ function attack(attacker, target) {
 
     if (target === 0) {
         formData.append("targetuid", 0);
+        console.log("#" + attackerCard + " is attacking " + "the opponent hero!");
     } else {
         formData.append("targetuid", target);
+        console.log("#" + attackerCard + " is attacking #" + targetCard + "!");
     }
 
     fetch("ajax-action.php", {
