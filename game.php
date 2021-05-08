@@ -30,18 +30,12 @@
             <div id="big-board">
 
                 <div id="board-left">
-                    <div id="opponent-status">
-                        <div id="opponent-name"></div>
-                        <div id="opponent-hp"></div>
-                        <div id="opponent-mana"></div>
-                        <div id="opponent-hero-power"></div>
-                    </div>
                     <div id="player-status">
                         <div id="player-name">Chocobar</div>
                         <div id="player-hp"></div>
                         <div id="player-mana"></div>
+                        <div id="hero-power"><button onclick="heroPower()" id="btn-hero-power"></button></div>
                     </div>
-                    <div id="hero-power"><button onclick="heroPower()" id="btn-hero-power"></button></div>
                 </div>
 
                 <div id="board-middle">
@@ -57,8 +51,16 @@
                 </div>
 
                 <div id="board-right">
-                    <div id="opponent-cards-in-deck"></div>
-                    <div id="player-cards-in-deck"></div>
+                    <div id="opponent-cards-in-deck">
+                        <div id="opponent-card-left"></div>
+                        <div id="opponent-card-middle"></div>
+                        <div id="opponent-card-right"></div>
+                    </div>
+                    <div id="player-cards-in-deck">
+                        <div id="player-card-left"></div>
+                        <div id="player-card-middle"></div>
+                        <div id="player-card-right"></div>
+                    </div>
                 </div>
             </div>
 
@@ -71,20 +73,26 @@
     <template id="opponent-cards-template-hand"></template>
 
     <template id="opponent-cards-template">
-        <div class="cost"></div>
+        <div class="state-cost">
+            <div class="state-cost-first"></div>
+            <div class="state"></div>
+            <div class="cost"></div>
+        </div>
         <div class="img"></div>
         <div class="mechanics"></div>
-        <div class="state"></div>
         <div class="stats">
             <div class="atk-hp"></div>
         </div>
     </template>
 
     <template id="cards-template">
-        <div class="cost"></div>
+        <div class="state-cost">
+            <div class="state-cost-first"></div>
+            <div class="state"></div>
+            <div class="cost"></div>
+        </div>
         <div class="img"></div>
         <div class="mechanics"></div>
-        <div class="state"></div>
         <div class="stats">
             <div class="atk-hp"></div>
         </div>

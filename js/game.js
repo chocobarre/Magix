@@ -5,7 +5,7 @@ const state = () => {
     })
     .then(response => response.json())
     .then(data => {
-        //console.log(data);
+        console.log(data);
         //console.log(data.opponent)
 
         if (data == "WAITING") {
@@ -26,8 +26,6 @@ const state = () => {
             updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
             updatePlayerBoard(data["board"], "#cards-template");
             updateOpponentBoard(data["opponent"]["board"], "#opponent-cards-template");
-
-            //console.log(data["opponent"]);
         }
 
         if (data.yourTurn == true) {
@@ -38,18 +36,12 @@ const state = () => {
             document.querySelector("#end-turn").style.visibility = "hidden";
         }
 
-        /*if (attackerSelected == true && targetSelected == true) {
-            attack(attackerCard, targetCard);
-            attackerCard = "";
-            targetCard = "";
-        }*/
-
-        setTimeout(state, 1000); // Attendre 1 seconde avant de relancer l’appel
+        setTimeout(state, 1000);
     })
 }
 
 window.addEventListener("load", () => {
-    setTimeout(state, 1000); // Appel initial (attendre 1 seconde)
+    setTimeout(state, 1000);
 });
 
 /*==========================================================
@@ -91,18 +83,20 @@ opponentHero.onclick = () => {
 ==========================================================*/
 
 const update = data => {
-    // Opponent
-    document.querySelector("#opponent-hp").innerText = "HP: " + data.opponent.hp;
+
+    // HP
     document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.hp;
+    document.querySelector("#player-hp").innerText = data.hp;
+
+    // MP
     document.querySelector("#opponent-UI-middle-right").innerText = data.opponent.mp;
+    document.querySelector("#player-mana").innerText = data.mp;
 
-    document.querySelector("#opponent-cards-in-deck").innerText = data.opponent.remainingCardsCount;
-    document.querySelector("#opponent-name").innerText = data.opponent.heroClass;
+    // Remaining cards in deck
+    document.querySelector("#opponent-card-middle").innerText = "x " + data.opponent.remainingCardsCount;
+    document.querySelector("#player-card-middle").innerText = "x " + data.remainingCardsCount;
+    //document.querySelector("#opponent-name").innerText = data.opponent.heroClass;
 
-    // Player
-    document.querySelector("#player-hp").innerText = "HP: " + data.hp;
-    document.querySelector("#player-mana").innerText = "MP: " + data.mp;
-    document.querySelector("#player-cards-in-deck").innerText = data.remainingCardsCount;
 }
 
 /*==========================================================
@@ -144,7 +138,7 @@ function updatePlayerHand(data, hand) {
 
         div.className = "cards";
         div.innerHTML = templateHTML;
-        div.querySelector(".img").innerHTML += "<img class='img' src='./images/card_02.png'></img>";
+        div.querySelector(".img").innerHTML += "<img class='img' src='./images/test.jpg'></img>";
         div.querySelector(".mechanics").innerText = element["mechanics"];
         div.querySelector(".cost").innerText = element["cost"];
         div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
@@ -196,7 +190,8 @@ function updatePlayerBoard(data, board) {
         div.querySelector(".mechanics").innerText = element["mechanics"];
 
         if (element["state"] == "SLEEP") {
-            div.querySelector(".state").innerText = element["state"];
+            //div.querySelector(".state").innerText = element["state"];
+            div.querySelector(".state").innerText = "ZzZzZzZ";
         }
         
         div.querySelector(".cost").innerText = element["cost"];

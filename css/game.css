@@ -28,10 +28,6 @@ body {
     background: -webkit-linear-gradient(top left, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
     background: -moz-linear-gradient(top left, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
     background: linear-gradient(to bottom right, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
-    /*background-image: url(../images/logo.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 50%;*/
     border: solid black 5px;
     width: 100px;
     height: 60%;
@@ -49,7 +45,8 @@ body {
     background: linear-gradient(to bottom right, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
     border: solid black 5px;
     width: 200px;
-    height: 95%;
+    height: 100%;
+    gap: 10px;
     box-shadow: 4px 3px 8px 1px black;
 }
 
@@ -58,19 +55,40 @@ body {
     cursor: pointer;
 }
 
-.cardsOpponent .cost {
-    flex: 1;
-    display: flex;
-    justify-content: right;
-    align-items: center;
+.cardsOpponent .state-cost {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
+    .cardsOpponent .state-cost-first {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cardsOpponent .state {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cardsOpponent .cost {
+        flex: 1;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+
 .cardsOpponent .img {
-    flex: 1;
+    flex: 3;
     width: 95%;
     height: 90px;
     display: block;
@@ -82,13 +100,11 @@ body {
     border: solid black 2px;
     flex: 5;
     display: flex;
-    margin: auto;
-    margin-top: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
     justify-content: center;
     align-items: center;
     color: black;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .cardsOpponent .stats {
@@ -96,18 +112,17 @@ body {
     display: flex;
     margin: auto;
     align-items: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 5px;
 }
 
-        .atk-hp {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: right;
-        }
+    .cardsOpponent .atk-hp {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
 
 /* ========== Player Cards ========== */
 
@@ -120,7 +135,8 @@ body {
     background: linear-gradient(to bottom right, rgba(189, 59, 102, 1.0), rgba(164, 107, 17, 1.0));
     border: solid black 5px;
     width: 200px;
-    height: 95%;
+    height: 100%;
+    gap: 10px;
     box-shadow: 4px 3px 8px 1px black;
 }
 
@@ -129,19 +145,40 @@ body {
     cursor: pointer;
 }
 
-.cost {
-    flex: 1;
-    display: flex;
-    justify-content: right;
-    align-items: center;
+.state-cost {
     margin-left: 10px;
     margin-right: 10px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
+    .state-cost-first {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .state {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cost {
+        flex: 1;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+
 .img {
-    flex: 1;
+    flex: 3;
     width: 95%;
     height: 90px;
     display: block;
@@ -153,20 +190,11 @@ body {
     border: solid black 2px;
     flex: 5;
     display: flex;
-    margin: auto;
-    margin-top: 15px;
-    margin-left: 10px;
-    margin-right: 10px;
     justify-content: center;
     align-items: center;
     color: black;
-}
-
-.state {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .stats {
@@ -174,10 +202,9 @@ body {
     display: flex;
     margin: auto;
     align-items: center;
-    margin-top: 5px;
-    margin-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 5px;
 }
 
     .atk-hp {
@@ -186,9 +213,6 @@ body {
         align-items: center;
         justify-content: right;
     }
-
-/* ========== Besoin pour le status du joueur et de l'opponent ========== */
-
 
 /* ========== Interface de l'opponent ========== */
 
@@ -205,9 +229,10 @@ body {
         flex: 1;
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: left;
         align-items: center;
         margin-bottom: 20px;
+        margin-left: 20px;
         gap: 10px;
     }
 
@@ -227,7 +252,7 @@ body {
         }
 
         #opponent-UI-middle-middle {
-            background-image: url(../images/hp.png);
+            background-image: url(../images/health.png);
             background-repeat: no-repeat;
             background-position: center;
             background-size: 75%;
@@ -280,8 +305,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
     gap: 20px;
 }
 
@@ -308,8 +333,7 @@ body {
         justify-content: center;
         align-items: center;
         gap: 20px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 20px;
     }
 
     #status-text {
@@ -317,15 +341,21 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
         #status-left { flex: 1; }
+
         #status-middle {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            height: 100%;
         }
+
         #status-right {
             flex: 1;
             display: flex;
@@ -339,8 +369,7 @@ body {
         justify-content: center;
         align-items: center;
         gap: 20px;
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
 /* ====================================================================== */
@@ -348,57 +377,19 @@ body {
 /* ====================================================================== */
 
 #board-left {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-#opponent-status {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-    #opponent-name {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #opponent-hp {
-        flex: 1;
-        background-image: url(../images/life.png);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 50% 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #opponent-mana {
-        flex: 1;
-        background-image: url(../images/mana.png);
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 50% 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
 #player-status {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 20px;
 }
 
     #player-name {
@@ -410,11 +401,11 @@ body {
     }
 
     #player-hp {
-        flex: 1;
-        background-image: url(../images/life.png);
-        background-repeat: no-repeat;
+        background-image: url(../images/health.png);
         background-position: center;
-        background-size: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 60%;
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -422,23 +413,43 @@ body {
     }
 
     #player-mana  {
-        flex: 1;
         background-image: url(../images/mana.png);
-        background-repeat: no-repeat;
         background-position: center;
-        background-size: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
 
+    #hero-power {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+        #btn-hero-power {
+            background-image: url("../images/btn_heropower_off.png");
+            width: 174px;
+            height: 51px;
+            display: block;
+            align-self: center;
+            border: 0;
+            cursor: pointer;
+        }
+    
+        #btn-hero-power:hover {
+            background-image: url("../images/btn_heropower_on.png");
+        }
 /* ====================================================================== */
 /* Player & Opponent cards left in deck */
 /* ====================================================================== */
 
 #board-right {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -449,49 +460,73 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-
-        background-image: url(../images/card.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 50% 50%;
     }
+
+        #opponent-card-left {
+            background-color: darkgreen;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #opponent-card-middle {
+            background: rgba(89, 191, 113, 1.0);
+            background: -webkit-linear-gradient(top left, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
+            background: -moz-linear-gradient(top left, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
+            background: linear-gradient(to bottom right, rgba(89, 191, 113, 1.0), rgba(2, 117, 253, 1.0));
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 120px;
+        }
+
+        #opponent-card-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
     #player-cards-in-deck {
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        background-image: url(../images/card.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 50% 50%;
     }
+
+        #player-card-left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #player-card-middle {
+            background: rgba(189, 59, 102, 1.0);
+            background: -webkit-linear-gradient(top left, rgba(189, 59, 102, 1.0), rgba(164, 107, 17, 1.0));
+            background: -moz-linear-gradient(top left, rgba(189, 59, 102, 1.0), rgba(164, 107, 17, 1.0));
+            background: linear-gradient(to bottom right, rgba(189, 59, 102, 1.0), rgba(164, 107, 17, 1.0));
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80px;
+            height: 120px;
+        }
+
+        #player-card-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
 /* ====================================================================== */
-/* Hero Power & End Turn */
+/* End Turn */
 /* ====================================================================== */
-
-#hero-power {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-    #btn-hero-power {
-        background-image: url("../images/btn_hero_power_off.png");
-        width: 174px;
-        height: 51px;
-        display: block;
-        align-self: center;
-        border: 0;
-        cursor: pointer;
-    }
-
-    #btn-hero-power:hover {
-        background-image: url("../images/btn_hero_power_on.png");
-    }
 
 #end-turn {
     flex: 1;
@@ -501,7 +536,7 @@ body {
 }
 
     #btn-end-turn {
-        background-image: url("../images/btn_end_turn_off.png");
+        background-image: url("../images/btn_endturn_off.png");
         width: 174px;
         height: 51px;
         display: block;
@@ -511,5 +546,5 @@ body {
     }
 
     #btn-end-turn:hover {
-        background-image: url("../images/btn_end_turn_on.png");
+        background-image: url("../images/btn_endturn_on.png");
     }

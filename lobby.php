@@ -15,25 +15,22 @@
 
     <body>
         <div id="container">
-            <div id="logo"></div>
+            <div id="logo">
+                <div id="head"></div>
+            </div>
             <div id="chat">
-                <iframe style="width:1500px;height:562px;border:0" onload="applyStyles(this)" 
+                <iframe style="width:1100px;height:562px;border:0" onload="applyStyles(this)" 
+                    src="https://magix.apps-de-cours.com/server/#/deck/<?= $_SESSION["key"] ?>/large">
+                </iframe>
+                <iframe style="width:1100px;height:562px;border:0" onload="applyStyles(this)" 
                     src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>/large">
                 </iframe>
             </div>
             <div id="buttons">
-                <a href="?training=true">
-                    <button id="training" name="training"></button>
-                </a>
-                <a href="?play=true">
-                    <button id="play" name="play"></button>
-                </a>
-                <a href="?coop=true">
-                    <button id="coop" name="coop"></button>
-                </a>
-                <a href="?logout=true">
-                    <button id="quit" name="quit"></button>
-                </a>
+                <a href="?training=true"><button id="training" name="training"></button></a>
+                <a href="?play=true"><button id="play" name="play"></button></a>
+                <a href="?coop=true"><button id="coop" name="coop"></button></a>
+                <a href="?logout=true"><button id="quit" name="quit"></button></a>
             </div>
         </div>
     </body>

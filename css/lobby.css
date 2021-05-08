@@ -4,47 +4,69 @@
 }
 
 html {
-    background-image: url(../images/background.jpg);
-    background-size: 100% 100%;
-	background-position: top left;
     width: 100%;
 	height: 100%;
 }
 
 #container {
+    background-image: url(../images/background.jpg);
     height: 100vh;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#logo {
-    background-image: url(../images/logo.png);
-    background-size: 100% 100%;
-	background-position: top left;
-    width: 10%;
-	height: 10%;
-}
+    #logo {
+        flex: 1;
+        width: 100%;
+        background-image: url(../images/border_01.png);
+        background-repeat: repeat-x;
+        background-position: bottom;
+    }
 
-#buttons {
-    width: 700px;
-    padding: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 10px;
-}
+        #head {
+            background-image: url(../images/head.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 7%;
+            height: 100%;
+            width: 100%;
+        }
+
+    #chat {
+        background-image: url(../images/Environment_Wortham.jpg);
+        background-size: 100%;
+        width: 100%;
+        flex: 2.5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #buttons {
+        width: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 25px;
+        background-image: url(../images/border_02.png);
+        background-repeat: repeat-x;
+        background-position: top;
+    }
 
 #training {
     background-image: url("../images/btn_training_off.png");
+    background-position: center;
     width: 174px;
     height: 51px;
     display: block;
     align-self: center;
     border: 0;
     cursor: pointer;
+    margin-top: 50px;
 }
 
 #training:hover {
@@ -53,12 +75,14 @@ html {
 
 #play {
     background-image: url("../images/btn_play_off.png");
+    background-position: center;
     width: 174px;
     height: 51px;
     display: block;
     align-self: center;
     border: 0;
     cursor: pointer;
+    margin-top: 50px;
 }
 
 #play:hover {
@@ -66,17 +90,18 @@ html {
 }
 
 #coop {
-    background-image: url("../images/btn_quit_off.png");
+    background-image: url("../images/btn_coop_off.png");
     width: 174px;
     height: 51px;
     display: block;
     align-self: center;
     border: 0;
     cursor: pointer;
+    margin-top: 50px;
 }
 
 #coop:hover {
-    background-image: url("../images/btn_quit_on.png");
+    background-image: url("../images/btn_coop_on.png");
 }
 
 #quit {
@@ -87,6 +112,7 @@ html {
     align-self: center;
     border: 0;
     cursor: pointer;
+    margin-top: 50px;
 }
 
 #quit:hover {
