@@ -84,8 +84,47 @@ opponentHero.onclick = () => {
 
 const update = data => {
 
+    // Opponent class icons
+    switch (data.opponent.heroClass) {
+        case "DemonHunter":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/demon_hunter.png')";
+            break;
+        case "Druid":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/druid.png')";
+            break;
+        case "Hunter":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/hunter.png')";
+            break;
+        case "Mage":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/mage.png')";
+            break;
+        case "Paladin":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/paladin.png')";
+            break;
+        case "Priest":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/priest.png')";
+            break;
+        case "Rogue":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/rogue.png')";
+            break;
+        case "Shaman":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/shaman.png')";
+            break;
+        case "Warlock":
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/warlock.png')";
+            break;
+        case "Warrior":
+                document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/warrior.png')";
+                break;
+        default:
+            document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/health.png')";
+    }
+
+    // Names
+    document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.username;
+
     // HP
-    document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.hp;
+    document.querySelector("#opponent-UI-middle-left").innerText = data.opponent.hp;
     document.querySelector("#player-hp").innerText = data.hp;
 
     // MP
@@ -95,7 +134,6 @@ const update = data => {
     // Remaining cards in deck
     document.querySelector("#opponent-card-middle").innerText = "x " + data.opponent.remainingCardsCount;
     document.querySelector("#player-card-middle").innerText = "x " + data.remainingCardsCount;
-    //document.querySelector("#opponent-name").innerText = data.opponent.heroClass;
 
 }
 
@@ -144,6 +182,16 @@ function updatePlayerHand(data, hand) {
         div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
         document.querySelector("#player-hand").append(div);
+
+        div.style.border = "solid black 7px";
+
+        div.onmouseenter = () => {
+            div.style.border = "solid white 7px";
+        }
+
+        div.onmouseleave = () => {
+            div.style.border = "solid black 7px";
+        }
     })
 }
 
@@ -190,7 +238,6 @@ function updatePlayerBoard(data, board) {
         div.querySelector(".mechanics").innerText = element["mechanics"];
 
         if (element["state"] == "SLEEP") {
-            //div.querySelector(".state").innerText = element["state"];
             div.querySelector(".state").innerText = "ZzZzZzZ";
         }
         
@@ -198,6 +245,26 @@ function updatePlayerBoard(data, board) {
         div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
         document.querySelector("#player-board").append(div);
+
+        if (element["mechanics"] == "Taunt") {
+            div.style.border = "solid grey 7px";
+            //div.style.borderImageSlice = "1";
+            //div.style.borderImageSource = "linear-gradient(to left, #898989, #484848)";
+        } else {
+            div.style.border = "solid black 7px";
+        }
+        
+        div.onmouseenter = () => {
+            div.style.border = "solid white 7px";
+        }
+
+        div.onmouseleave = () => {
+            if (element["mechanics"] == "Taunt") {
+                div.style.border = "solid grey 7px";
+            } else {
+                div.style.border = "solid black 7px";
+            }
+        }
 
         div.onclick = () => {
             attackerCard = element.uid;
@@ -230,6 +297,26 @@ function updateOpponentBoard(data, board) {
 
         document.querySelector("#opponent-board").append(div);
 
+        if (element["mechanics"] == "Taunt") {
+            div.style.border = "solid grey 7px";
+            //div.style.borderImageSlice = "1";
+            //div.style.borderImageSource = "linear-gradient(to left, #898989, #484848)";
+        } else {
+            div.style.border = "solid black 7px";
+        }
+        
+        div.onmouseenter = () => {
+            div.style.border = "solid white 7px";
+        }
+
+        div.onmouseleave = () => {
+            if (element["mechanics"] == "Taunt") {
+                div.style.border = "solid grey 7px";
+            } else {
+                div.style.border = "solid black 7px";
+            }
+        }
+        
         div.onclick = () => {
             if (attackerSelected == true) {
                 targetCard = element.uid;
