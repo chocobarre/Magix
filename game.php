@@ -31,10 +31,11 @@
 
                 <div id="board-left">
                     <div id="player-status">
-                        <div id="player-name">Chocobar</div>
+                        <div id="player-name"></div>
                         <div id="player-hp"></div>
                         <div id="player-mana"></div>
-                        <div id="hero-power"><button onclick="heroPower()" id="btn-hero-power"></button></div>
+                        <div id="hero-power"></div>
+                        <div id="btn-chat">aaaaaaa</div>
                     </div>
                 </div>
 
@@ -70,15 +71,20 @@
         </div>
     </body>
 
+    <div id="chat">
+        <iframe style="width:1100px;height:562px;border:0" onload="applyStyles(this)" 
+            src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>/large">
+        </iframe>
+    </div>
+
     <template id="opponent-cards-template-hand"></template>
 
     <template id="opponent-cards-template">
         <div class="state-cost">
             <div class="state-cost-first"></div>
-            <div class="state"></div>
             <div class="cost"></div>
         </div>
-        <div class="img"></div>
+        <div class="state"></div>
         <div class="mechanics"></div>
         <div class="stats">
             <div class="atk-hp"></div>
@@ -88,10 +94,9 @@
     <template id="cards-template">
         <div class="state-cost">
             <div class="state-cost-first"></div>
-            <div class="state"></div>
             <div class="cost"></div>
         </div>
-        <div class="img"></div>
+        <div class="state"></div>
         <div class="mechanics"></div>
         <div class="stats">
             <div class="atk-hp"></div>
