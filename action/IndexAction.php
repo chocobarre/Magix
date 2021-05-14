@@ -22,8 +22,7 @@
                 
                 if ($result == "INVALID_USERNAME_PASSWORD") {
                     $hasConnectionError = true;
-                }
-                else {
+                } else {
                     $_SESSION["key"] = $result->key;
                     $_SESSION["isConnected"] = true;
                     $_SESSION["visibility"] = CommonAction::$VISIBILITY_MEMBER;

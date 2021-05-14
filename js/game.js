@@ -45,9 +45,9 @@ const state = () => {
             document.querySelector("#opponent-UI-right").style.visibility = "hidden";
             document.querySelector("#board-left").style.visibility = "hidden";
             document.querySelector("#board-right").style.visibility = "hidden";
-            document.querySelector("#opponent-board").style.visibility = "hidden";
-            document.querySelector("#player-board").style.visibility = "hidden";
-            document.querySelector("#player-hand").style.visibility = "hidden";
+            //document.querySelector("#opponent-board").style.visibility = "hidden";
+            //document.querySelector("#player-board").style.visibility = "hidden";
+            //document.querySelector("#player-hand").style.visibility = "hidden";
         } else if (data == "LAST_GAME_LOST") {
             document.querySelector("#status-middle").innerText = "D E F E A T";
             document.querySelector("#status-middle").style.fontSize = "100px";
@@ -58,9 +58,9 @@ const state = () => {
             document.querySelector("#opponent-UI-right").style.visibility = "hidden";
             document.querySelector("#board-left").style.visibility = "hidden";
             document.querySelector("#board-right").style.visibility = "hidden";
-            document.querySelector("#opponent-board").style.visibility = "hidden";
-            document.querySelector("#player-board").style.visibility = "hidden";
-            document.querySelector("#player-hand").style.visibility = "hidden";
+            //document.querySelector("#opponent-board").style.visibility = "hidden";
+            //document.querySelector("#player-board").style.visibility = "hidden";
+            //document.querySelector("#player-hand").style.visibility = "hidden";
         } else {
             document.querySelector("#end-turn").style.visibility = "visible";
             document.querySelector("#opponent-hand").style.visibility = "visible";
@@ -112,26 +112,6 @@ const state = () => {
                 default:
                     document.querySelector("#opponent-UI-middle-middle").style.backgroundImage = "url('./images/health.png')";
             }
-
-            // Names
-            document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.username;
-            document.querySelector("#player-name").innerText = data.username;
-
-            // HP
-            document.querySelector("#opponent-UI-middle-left").innerText = data.opponent.hp;
-            document.querySelector("#player-hp").innerText = data.hp;
-            document.querySelector("#opponent-UI-middle-left").style.fontSize = "20px";
-            document.querySelector("#player-hp").style.fontSize = "20px";
-
-            // MP
-            document.querySelector("#opponent-UI-middle-right").innerText = data.opponent.mp;
-            document.querySelector("#player-mana").innerText = data.mp;
-            document.querySelector("#opponent-UI-middle-right").style.fontSize = "20px";
-            document.querySelector("#player-mana").style.fontSize = "20px";
-
-            // Remaining cards in deck
-            document.querySelector("#opponent-card-right").innerText = "x " + data.opponent.remainingCardsCount;
-            document.querySelector("#player-card-right").innerText = "x " + data.remainingCardsCount;
         }
 
         if (data.yourTurn == true) {
@@ -142,10 +122,24 @@ const state = () => {
             document.querySelector("#end-turn").style.visibility = "hidden";
         }
 
+        let hero = document.querySelector("#hero-power");
+
         if (data.heroPowerAlreadyUsed == true) {
-            document.querySelector("#hero-power").style.backgroundImage = "url('./images/hero_power_off.png')";
-        } else if (data.heroPowerAlreadyUsed == false && data.yourTurn == true) {
-            document.querySelector("#hero-power").style.backgroundImage = "url('./images/hero_power_on.png')";
+            hero.style.backgroundImage = "url('./images/btn_heropower_used.png')";
+            hero.onmouseenter = () => {
+                document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_used.png')";
+            }
+            hero.onmouseleave = () => {
+                document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_used.png')";
+            }
+        } else if (data.heroPowerAlreadyUsed == false) {
+            hero.style.backgroundImage = "url('./images/btn_heropower_off.png')";
+            hero.onmouseenter = () => {
+                document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_on.png')";
+            }
+            hero.onmouseleave = () => {
+                document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_off.png')";
+            }
         }
 
         setTimeout(state, 1000);
@@ -163,7 +157,8 @@ window.addEventListener("load", () => {
 ==========================================================*/
 
 let btnHeroPower = document.querySelector("#hero-power");
-let btnEndTurn = document.querySelector("#btn-end-turn");
+let btnEndTurn = document.querySelector("#end-turn");
+let btnChat = document.querySelector("#chat");
 let opponentHero = document.querySelector("#opponent-UI-middle");
 
 let attackerSelected = false;
@@ -172,7 +167,6 @@ let targetSelected = false;
 let attackerCard;
 let targetCard;
 
-let buttonChat = document.querySelector("#btn-chat");
 let chatVisible = false;
 
 btnHeroPower.onclick = () => {
@@ -183,21 +177,21 @@ btnEndTurn.onclick = () => {
     endTurn();
 }
 
-opponentHero.onclick = () => {
-    if (attackerSelected == true) {
-        attack(attackerCard, 0);
-    } else {
-        console.log("Please select an attacker!");
-    }
-}
-
-buttonChat.onclick = () => {
+btnChat.onclick = () => {
     if (chatVisible == false) {
         chatVisible = true;
         showChat();
     } else if (chatVisible == true) {
         chatVisible = false;
         hideChat();
+    }
+}
+
+opponentHero.onclick = () => {
+    if (attackerSelected == true) {
+        attack(attackerCard, 0);
+    } else {
+        console.log("Please select an attacker!");
     }
 }
 
@@ -208,7 +202,25 @@ buttonChat.onclick = () => {
 ==========================================================*/
 
 const update = data => {
-    // plus besoin je crois
+    // Names
+    document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.username;
+    document.querySelector("#player-name").innerText = data.username;
+
+    // HP
+    document.querySelector("#opponent-UI-middle-left").innerText = data.opponent.hp;
+    document.querySelector("#player-hp").innerText = data.hp;
+    document.querySelector("#opponent-UI-middle-left").style.fontSize = "20px";
+    document.querySelector("#player-hp").style.fontSize = "20px";
+
+    // MP
+    document.querySelector("#opponent-UI-middle-right").innerText = data.opponent.mp;
+    document.querySelector("#player-mana").innerText = data.mp;
+    document.querySelector("#opponent-UI-middle-right").style.fontSize = "20px";
+    document.querySelector("#player-mana").style.fontSize = "20px";
+
+    // Remaining cards in deck
+    document.querySelector("#opponent-card-right").innerText = "x " + data.opponent.remainingCardsCount;
+    document.querySelector("#player-card-right").innerText = "x " + data.remainingCardsCount;
 }
 
 /*==========================================================
@@ -226,7 +238,7 @@ function updatePlayerHand(data, hand) {
     cards.forEach(element => {
         let div = document.createElement("div");
 
-        div.onclick = () => {
+        div.onmouseup = () => {
             let formData = new FormData();
             formData.append("type", "PLAY");
             formData.append("uid", element["uid"]); 
@@ -258,20 +270,21 @@ function updatePlayerHand(data, hand) {
         document.querySelector("#player-hand").append(div);
         
         div.style.border = "solid black 7px";
+        div.style.boxShadow = "4px 3px 8px 1px black";
 
         if (element["cost"] <= document.querySelector("#player-mana").innerText) {
-            div.style.boxShadow = "0 20px 20px -17px rgba(0,111,255,0.53)";
+            div.style.boxShadow = "0px 0px 5px 5px #0ff";
         }
 
         div.onmouseenter = () => {
-            div.style.border = "solid white 7px";
+            div.style.boxShadow = "0px 0px 5px 5px white";
         }
 
         div.onmouseleave = () => {
-            div.style.border = "solid black 7px";
+            div.style.boxShadow = "4px 3px 8px 1px black";
 
             if (element["cost"] <= document.querySelector("#player-mana").innerText) {
-                div.style.boxShadow = "0 20px 20px -17px rgba(0,111,255,0.53)";
+                div.style.boxShadow = "0px 0px 5px 5px #0ff";
             }
         }
     })
@@ -327,28 +340,31 @@ function updatePlayerBoard(data, board) {
             div.querySelector(".state").innerText = "ZzZzZzZ";
         }
 
-        if (element["mechanics"].indexOf("Taunt") == 0 || element["mechanics"].indexOf("Taunt") == 1) {
-            div.style.border = "solid 7px";
-            div.style.borderImageSlice = "1";
-            div.style.borderImageSource = "linear-gradient(to left, #898989, #484848)";
-        } else {
-            div.style.border = "solid black 7px";
+        if (element["mechanics"].indexOf("Taunt") > -1) {
+            div.style.boxShadow = "0px 0px 5px 5px grey";
+        }
+
+        if (element["mechanics"].indexOf("Stealth") > -1) {
+            div.style.backgroundImage = "url('./images/04_stealth.jpg')";
         }
         
         div.onmouseenter = () => {
-            div.style.border = "solid white 7px";
+            div.style.boxShadow = "0px 0px 5px 5px white";
         }
 
         div.onmouseleave = () => {
-            if (element["mechanics"].indexOf("Taunt") == 0 || element["mechanics"].indexOf("Taunt") == 1) {
-                div.style.borderImageSlice = "1";
-                div.style.borderImageSource = "linear-gradient(to left, #898989, #484848)";
-            } else {
-                div.style.border = "solid black 7px";
+            div.style.boxShadow = "4px 3px 8px 1px black";
+
+            if (element["mechanics"].indexOf("Taunt") > -1) {
+                div.style.boxShadow = "0px 0px 5px 5px grey";
             }
         }
 
-        div.onclick = () => {
+        div.onmouseup = () => {
+            console.log("-------------------------");
+            console.log("Index Stealth : " + element["mechanics"].indexOf("Stealth"));
+            console.log("Index Taunt : " + element["mechanics"].indexOf("Taunt"));
+            console.log("-------------------------");
             attackerCard = element.uid;
             attackerSelected = true;
             console.log("#" + attackerCard + " has been designated as the attacker!");
@@ -374,7 +390,7 @@ function updateOpponentBoard(data, board) {
         div.className = "cards";
         div.innerHTML = templateHTML;
 
-        div.style.backgroundImage = "url(./images/02.jpg)";
+        div.style.backgroundImage = "url(./images/03.jpg)";
         div.style.backgroundPosition = "center";
         div.style.backgroundRepeat = "no-repeat";
         div.style.backgroundSize = "cover";
@@ -385,29 +401,27 @@ function updateOpponentBoard(data, board) {
 
         document.querySelector("#opponent-board").append(div);
 
-        if (element["mechanics"].indexOf("Taunt") == 0 || element["mechanics"].indexOf("Taunt") == 1) {
-            div.style.border = "solid 7px";
-            div.style.borderImageSlice = "1";
-            div.style.borderImageSource = "linear-gradient(to left, #898989, #484848)";
-        } else {
-            div.style.border = "solid black 7px";
+        if (element["mechanics"].indexOf("Taunt") > -1) {
+            div.style.boxShadow = "0px 0px 5px 5px grey";
+        }
+
+        if (element["mechanics"].indexOf("Stealth") > -1) {
+            div.style.backgroundImage = "url('./images/04_stealth.jpg')";
         }
         
         div.onmouseenter = () => {
-            div.style.border = "solid white 7px";
+            div.style.boxShadow = "0px 0px 5px 5px white";
         }
 
         div.onmouseleave = () => {
-            if (element["mechanics"].indexOf("Taunt") == 0 || element["mechanics"].indexOf("Taunt") == 1) {
-                div.style.borderImageSlice = "1";
-                div.style.borderImageSource = "linear-gradient(to left, #898989, #484848)";
-            } else {
-                div.style.border = "solid black 7px";
+            div.style.boxShadow = "4px 3px 8px 1px black";
+
+            if (element["mechanics"].indexOf("Taunt") > -1) {
+                div.style.boxShadow = "0px 0px 5px 5px grey";
             }
         }
         
-        div.onclick = () => {
-            //console.log(element["mechanics"].indexOf("Taunt"));
+        div.onmouseup = () => {
             if (attackerSelected == true) {
                 targetCard = element.uid;
                 targetSelected = true;
@@ -484,7 +498,6 @@ const heroPower = () => {
             }
         }
         else {
-            document.querySelector("#hero-power").style.backgroundImage = "url('./images/hero_power_off.png')";
             update(data);
         }
     })
@@ -526,11 +539,15 @@ const endTurn = () => {
 const applyStyles = iframe => {
 	let styles = {
 		fontColor : "#FFFFFF",
-		backgroundColor : "rgba(0, 0, 0, 0.7)",
+		backgroundColor : "rgba(0, 0, 0, 0.8)",
 		fontGoogleName : "Sofia",
 		fontSize : "20px",
+		hideIcons : false
 	}
-	iframe.contentWindow.postMessage(JSON.stringify(styles), "*");	
+	
+	setTimeout(() => {
+		iframe.contentWindow.postMessage(JSON.stringify(styles), "*");	
+    }, 100);
 }
 
 /*==========================================================
@@ -541,9 +558,9 @@ const applyStyles = iframe => {
 
 const showChat = () => {
     chatVisible = true;
-    document.querySelector("#chat").style.display = "block";
+    document.querySelector("#chatWindow").style.display = "block";
 }
 
 const hideChat = () => {
-    document.querySelector("#chat").style.display = "none";
+    document.querySelector("#chatWindow").style.display = "none";
 }

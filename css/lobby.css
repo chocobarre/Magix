@@ -23,15 +23,25 @@ html {
         background-image: url(../images/border_01.png);
         background-repeat: repeat-x;
         background-position: bottom;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
     }
 
         #head {
-            background-image: url(../images/head.png);
+            flex: 1;
+            /*background-image: url(../images/head.png);*/
             background-position: center;
             background-repeat: no-repeat;
             background-size: 7%;
             height: 100%;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
     #chat {
@@ -59,11 +69,9 @@ html {
 
 #training {
     background-image: url("../images/btn_training_off.png");
-    background-position: center;
     width: 174px;
     height: 51px;
     display: block;
-    align-self: center;
     border: 0;
     cursor: pointer;
     margin-top: 50px;
@@ -75,11 +83,9 @@ html {
 
 #play {
     background-image: url("../images/btn_play_off.png");
-    background-position: center;
     width: 174px;
     height: 51px;
     display: block;
-    align-self: center;
     border: 0;
     cursor: pointer;
     margin-top: 50px;
@@ -94,7 +100,6 @@ html {
     width: 174px;
     height: 51px;
     display: block;
-    align-self: center;
     border: 0;
     cursor: pointer;
     margin-top: 50px;
@@ -109,7 +114,6 @@ html {
     width: 174px;
     height: 51px;
     display: block;
-    align-self: center;
     border: 0;
     cursor: pointer;
     margin-top: 50px;

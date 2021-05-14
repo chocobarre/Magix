@@ -44,6 +44,7 @@ body {
     width: 200px;
     height: 100%;
     gap: 10px;
+    border: black solid 7px;
     box-shadow: 4px 3px 8px 1px black;
 }
 
@@ -102,9 +103,6 @@ body {
 .stats {
     font-size: 20px;
     flex: 1;
-    display: flex;
-    margin: auto;
-    align-items: center;
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 5px;
@@ -115,7 +113,7 @@ body {
         flex: 1;
         display: flex;
         align-items: center;
-        justify-content: right;
+        justify-content: center;
     }
 
 /* ========== Interface de l'opponent ========== */
@@ -257,7 +255,7 @@ body {
 
         #status-middle {
             font-size: 20px;
-            flex: 1;
+            flex: 2;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -294,17 +292,16 @@ body {
 }
 
 #player-status {
-    margin-top: 20px;
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
     #player-name {
         font-size: 20px;
-        flex: 1;
+        flex: 0.5;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -315,20 +312,20 @@ body {
         background-image: url(../images/health.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50%;
-        flex: 1;
+        background-size: 65%;
+        flex: 1.5;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;;
+        align-items: center;
     }
 
     #player-mana  {
         background-image: url(../images/mana.png);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50%;
-        flex: 1;
+        background-size: 65%;
+        flex: 1.5;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -336,17 +333,40 @@ body {
     }
 
     #hero-power {
-        /*background-image: url(../images/hero_power_on.png);*/
+        flex: 0.6;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 50%;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        width: 174px;
+        height: 51px;
+        display: block;
+        align-self: center;
+        border: 0;
         cursor: pointer;
-        margin-bottom: 20px;
+    }
+
+    #chat {
+        flex: 0.6;
+        background-image: url(../images/btn_chat_off.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 174px;
+        height: 51px;
+        display: block;
+        align-self: center;
+        border: 0;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+
+    #chat:hover {
+        background-image: url(../images/btn_chat_on.png);
+    }
+
+    #chatWindow {
+        display: none;
+        position: absolute;
+        top: 25%;
+        left: 29%;
     }
 
 /* ====================================================================== */
@@ -455,10 +475,3 @@ body {
     #btn-end-turn:hover {
         background-image: url("../images/btn_endturn_on.png");
     }
-
-#chat {
-    display: none;
-    position: absolute;
-    top: 25%;
-    left: 29%;
-}

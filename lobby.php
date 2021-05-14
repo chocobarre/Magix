@@ -12,11 +12,10 @@
         <link rel="stylesheet" type="text/css" href="css/lobby.css"/>
         <script defer src="js/lobby.js"></script>
     </head>
-
     <body>
         <div id="container">
             <div id="logo">
-                <div id="head"></div>
+                <canvas id="canvas" width="250" height="250"></canvas>
             </div>
             <div id="chat">
                 <iframe style="width:1100px;height:562px;border:0" onload="applyStyles(this)" 
@@ -34,7 +33,6 @@
             </div>
         </div>
     </body>
-
     <footer>
     </footer>
 </html>

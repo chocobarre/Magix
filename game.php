@@ -35,7 +35,7 @@
                         <div id="player-hp"></div>
                         <div id="player-mana"></div>
                         <div id="hero-power"></div>
-                        <div id="btn-chat">aaaaaaa</div>
+                        <div id="chat"></div>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
         </div>
     </body>
 
-    <div id="chat">
+    <div id="chatWindow">
         <iframe style="width:1100px;height:562px;border:0" onload="applyStyles(this)" 
             src="https://magix.apps-de-cours.com/server/#/chat/<?= $_SESSION["key"] ?>/large">
         </iframe>
