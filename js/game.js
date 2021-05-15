@@ -45,9 +45,6 @@ const state = () => {
             document.querySelector("#opponent-UI-right").style.visibility = "hidden";
             document.querySelector("#board-left").style.visibility = "hidden";
             document.querySelector("#board-right").style.visibility = "hidden";
-            //document.querySelector("#opponent-board").style.visibility = "hidden";
-            //document.querySelector("#player-board").style.visibility = "hidden";
-            //document.querySelector("#player-hand").style.visibility = "hidden";
         } else if (data == "LAST_GAME_LOST") {
             document.querySelector("#status-middle").innerText = "D E F E A T";
             document.querySelector("#status-middle").style.fontSize = "100px";
@@ -58,9 +55,6 @@ const state = () => {
             document.querySelector("#opponent-UI-right").style.visibility = "hidden";
             document.querySelector("#board-left").style.visibility = "hidden";
             document.querySelector("#board-right").style.visibility = "hidden";
-            //document.querySelector("#opponent-board").style.visibility = "hidden";
-            //document.querySelector("#player-board").style.visibility = "hidden";
-            //document.querySelector("#player-hand").style.visibility = "hidden";
         } else {
             document.querySelector("#end-turn").style.visibility = "visible";
             document.querySelector("#opponent-hand").style.visibility = "visible";
@@ -241,7 +235,7 @@ function updatePlayerHand(data, hand) {
         div.onmouseup = () => {
             let formData = new FormData();
             formData.append("type", "PLAY");
-            formData.append("uid", element["uid"]); 
+            formData.append("uid", element["uid"]);
             
             fetch("ajax-action.php", {
                 method : "POST",
@@ -361,10 +355,10 @@ function updatePlayerBoard(data, board) {
         }
 
         div.onmouseup = () => {
-            console.log("-------------------------");
+            /*console.log("-------------------------");
             console.log("Index Stealth : " + element["mechanics"].indexOf("Stealth"));
             console.log("Index Taunt : " + element["mechanics"].indexOf("Taunt"));
-            console.log("-------------------------");
+            console.log("-------------------------");*/
             attackerCard = element.uid;
             attackerSelected = true;
             console.log("#" + attackerCard + " has been designated as the attacker!");
@@ -547,7 +541,7 @@ const applyStyles = iframe => {
 	
 	setTimeout(() => {
 		iframe.contentWindow.postMessage(JSON.stringify(styles), "*");	
-    }, 100);
+    }, 200);
 }
 
 /*==========================================================

@@ -122,3 +122,10 @@ html {
 #quit:hover {
     background-image: url("../images/btn_quit_on.png");
 }
+
+.square {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #fff;
+}
