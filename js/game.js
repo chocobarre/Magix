@@ -30,31 +30,24 @@ const state = () => {
     })
     .then(response => response.json())
     .then(data => {
-        //console.log(data);
+        console.log(data);
         //console.log(data.opponent)
+
+        if (typeof data !== "object") {
+
+        }
+        else {
+
+        }
 
         if (data == "WAITING") {
             document.querySelector("#status-middle").innerText = "Searching for opponent...";
         } else if (data == "LAST_GAME_WON") {
             document.querySelector("#status-middle").innerText = "V I C T O R Y";
-            document.querySelector("#status-middle").style.fontSize = "100px";
-
-            document.querySelector("#end-turn").style.visibility = "hidden";
-            document.querySelector("#opponent-hand").style.visibility = "hidden";
-            document.querySelector("#opponent-UI-middle").style.visibility = "hidden";
-            document.querySelector("#opponent-UI-right").style.visibility = "hidden";
-            document.querySelector("#board-left").style.visibility = "hidden";
-            document.querySelector("#board-right").style.visibility = "hidden";
+            hidden();
         } else if (data == "LAST_GAME_LOST") {
             document.querySelector("#status-middle").innerText = "D E F E A T";
-            document.querySelector("#status-middle").style.fontSize = "100px";
-
-            document.querySelector("#end-turn").style.visibility = "hidden";
-            document.querySelector("#opponent-hand").style.visibility = "hidden";
-            document.querySelector("#opponent-UI-middle").style.visibility = "hidden";
-            document.querySelector("#opponent-UI-right").style.visibility = "hidden";
-            document.querySelector("#board-left").style.visibility = "hidden";
-            document.querySelector("#board-right").style.visibility = "hidden";
+            hidden();
         } else {
             document.querySelector("#end-turn").style.visibility = "visible";
             document.querySelector("#opponent-hand").style.visibility = "visible";
@@ -116,9 +109,9 @@ const state = () => {
             document.querySelector("#end-turn").style.visibility = "hidden";
         }
 
-        let hero = document.querySelector("#hero-power");
+        //let hero = document.querySelector("#hero-power");
 
-        if (data.heroPowerAlreadyUsed == true) {
+        /*if (data.heroPowerAlreadyUsed == true) {
             hero.style.backgroundImage = "url('./images/btn_heropower_used.png')";
             hero.onmouseenter = () => {
                 document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_used.png')";
@@ -134,10 +127,20 @@ const state = () => {
             hero.onmouseleave = () => {
                 document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_off.png')";
             }
-        }
+        }*/
 
         setTimeout(state, 1000);
     })
+}
+
+const hidden = () => {
+    document.querySelector("#status-middle").style.fontSize = "60px";
+    document.querySelector("#end-turn").style.visibility = "hidden";
+    document.querySelector("#opponent-hand").style.visibility = "hidden";
+    document.querySelector("#opponent-UI-middle").style.visibility = "hidden";
+    document.querySelector("#opponent-UI-right").style.visibility = "hidden";
+    document.querySelector("#board-left").style.visibility = "hidden";
+    document.querySelector("#board-right").style.visibility = "hidden";
 }
 
 window.addEventListener("load", () => {
@@ -146,7 +149,7 @@ window.addEventListener("load", () => {
 
 /*==========================================================
 *
-*   Variables
+*   Variables & quelques appels de fonctions
 *
 ==========================================================*/
 
@@ -245,11 +248,15 @@ function updatePlayerHand(data, hand) {
             .then(response => response.json())
             .then(data => {
                 if (typeof data !== "object") {
-                    if (data == "GAME_NOT_FOUND") {
-                    }
+                    /*if (data == "GAME_NOT_FOUND") {
+                    }*/
                 }
                 else {
                     update(data);
+                    updatePlayerHand(data["hand"], "#cards-template");
+                    updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
+                    updatePlayerBoard(data["board"], "#cards-template");
+                    updateOpponentBoard(data["opponent"]["board"], "#opponent-cards-template");
                 }
             })
         }
@@ -339,7 +346,7 @@ function updatePlayerBoard(data, board) {
         }
 
         if (element["mechanics"].indexOf("Stealth") > -1) {
-            div.style.backgroundImage = "url('./images/04_stealth.jpg')";
+            div.style.opacity = "0.5";
         }
         
         div.onmouseenter = () => {
@@ -456,7 +463,12 @@ function attack(attacker, target) {
             }
         }
         else {
+            //update(data);
             update(data);
+            updatePlayerHand(data["hand"], "#cards-template");
+            updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
+            updatePlayerBoard(data["board"], "#cards-template");
+            updateOpponentBoard(data["opponent"]["board"], "#opponent-cards-template");
         }
     })
     
@@ -484,15 +496,19 @@ const heroPower = () => {
     .then(response => response.json())
     .then(data => {
         if (typeof data !== "object") {
-            if (data == "GAME_NOT_FOUND") {
+            /*if (data == "GAME_NOT_FOUND") {
                 if (data == "HERO_POWER_ALREADY_USED") {
                     if (data == "NOT_ENOUGH_ENERGY") {
                     }
                 }
-            }
+            }*/
         }
         else {
             update(data);
+            updatePlayerHand(data["hand"], "#cards-template");
+            updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
+            updatePlayerBoard(data["board"], "#cards-template");
+            updateOpponentBoard(data["opponent"]["board"], "#opponent-cards-template");
         }
     })
 }
@@ -520,6 +536,10 @@ const endTurn = () => {
         }
         else {
             update(data);
+            updatePlayerHand(data["hand"], "#cards-template");
+            updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
+            updatePlayerBoard(data["board"], "#cards-template");
+            updateOpponentBoard(data["opponent"]["board"], "#opponent-cards-template");
         }
     })
 }
