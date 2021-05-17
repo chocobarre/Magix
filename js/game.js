@@ -109,9 +109,9 @@ const state = () => {
             document.querySelector("#end-turn").style.visibility = "hidden";
         }
 
-        //let hero = document.querySelector("#hero-power");
+        let hero = document.querySelector("#hero-power");
 
-        /*if (data.heroPowerAlreadyUsed == true) {
+        if (data.heroPowerAlreadyUsed == true) {
             hero.style.backgroundImage = "url('./images/btn_heropower_used.png')";
             hero.onmouseenter = () => {
                 document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_used.png')";
@@ -127,7 +127,7 @@ const state = () => {
             hero.onmouseleave = () => {
                 document.querySelector("#hero-power").style.backgroundImage = "url('./images/btn_heropower_off.png')";
             }
-        }*/
+        }
 
         setTimeout(state, 1000);
     })
@@ -248,10 +248,7 @@ function updatePlayerHand(data, hand) {
             .then(response => response.json())
             .then(data => {
                 if (typeof data !== "object") {
-                    /*if (data == "GAME_NOT_FOUND") {
-                    }*/
-                }
-                else {
+                } else {
                     update(data);
                     updatePlayerHand(data["hand"], "#cards-template");
                     updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
@@ -274,7 +271,7 @@ function updatePlayerHand(data, hand) {
         div.style.boxShadow = "4px 3px 8px 1px black";
 
         if (element["cost"] <= document.querySelector("#player-mana").innerText) {
-            div.style.boxShadow = "0px 0px 5px 5px #0ff";
+            div.style.boxShadow = "0px 0px 5px 5px #b2fe88";
         }
 
         div.onmouseenter = () => {
@@ -285,7 +282,7 @@ function updatePlayerHand(data, hand) {
             div.style.boxShadow = "4px 3px 8px 1px black";
 
             if (element["cost"] <= document.querySelector("#player-mana").innerText) {
-                div.style.boxShadow = "0px 0px 5px 5px #0ff";
+                div.style.boxShadow = "0px 0px 5px 5px #b2fe88";
             }
         }
     })
@@ -337,12 +334,14 @@ function updatePlayerBoard(data, board) {
 
         document.querySelector("#player-board").append(div);
 
-        if (element["state"] == "SLEEP") {
-            div.querySelector(".state").innerText = "ZzZzZzZ";
+        if (element["state"] != "SLEEP") {
+            div.style.boxShadow = "0px 0px 5px 5px #a5fdfe";
+        } else {
+            //div.querySelector(".state").innerText = "zZzZzZzZzZzZz";
         }
 
         if (element["mechanics"].indexOf("Taunt") > -1) {
-            div.style.boxShadow = "0px 0px 5px 5px grey";
+            div.style.border = "solid 7px silver";
         }
 
         if (element["mechanics"].indexOf("Stealth") > -1) {
@@ -357,15 +356,15 @@ function updatePlayerBoard(data, board) {
             div.style.boxShadow = "4px 3px 8px 1px black";
 
             if (element["mechanics"].indexOf("Taunt") > -1) {
-                div.style.boxShadow = "0px 0px 5px 5px grey";
+                div.style.border = "solid 7px silver";
+            }
+
+            if (element["state"] != "SLEEP") {
+                div.style.boxShadow = "0px 0px 5px 5px #a5fdfe";
             }
         }
 
         div.onmouseup = () => {
-            /*console.log("-------------------------");
-            console.log("Index Stealth : " + element["mechanics"].indexOf("Stealth"));
-            console.log("Index Taunt : " + element["mechanics"].indexOf("Taunt"));
-            console.log("-------------------------");*/
             attackerCard = element.uid;
             attackerSelected = true;
             console.log("#" + attackerCard + " has been designated as the attacker!");
@@ -403,11 +402,11 @@ function updateOpponentBoard(data, board) {
         document.querySelector("#opponent-board").append(div);
 
         if (element["mechanics"].indexOf("Taunt") > -1) {
-            div.style.boxShadow = "0px 0px 5px 5px grey";
+            div.style.border = "solid 7px silver";
         }
 
         if (element["mechanics"].indexOf("Stealth") > -1) {
-            div.style.backgroundImage = "url('./images/04_stealth.jpg')";
+            div.style.opacity = "0.5";
         }
         
         div.onmouseenter = () => {
@@ -418,7 +417,7 @@ function updateOpponentBoard(data, board) {
             div.style.boxShadow = "4px 3px 8px 1px black";
 
             if (element["mechanics"].indexOf("Taunt") > -1) {
-                div.style.boxShadow = "0px 0px 5px 5px grey";
+                div.style.border = "solid 7px silver";
             }
         }
         
@@ -459,11 +458,7 @@ function attack(attacker, target) {
     .then(response => response.json())
     .then(data => {
         if (typeof data !== "object") {
-            if (data == "GAME_NOT_FOUND") {
-            }
-        }
-        else {
-            //update(data);
+        } else {
             update(data);
             updatePlayerHand(data["hand"], "#cards-template");
             updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
@@ -496,14 +491,7 @@ const heroPower = () => {
     .then(response => response.json())
     .then(data => {
         if (typeof data !== "object") {
-            /*if (data == "GAME_NOT_FOUND") {
-                if (data == "HERO_POWER_ALREADY_USED") {
-                    if (data == "NOT_ENOUGH_ENERGY") {
-                    }
-                }
-            }*/
-        }
-        else {
+        } else {
             update(data);
             updatePlayerHand(data["hand"], "#cards-template");
             updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");
@@ -531,10 +519,7 @@ const endTurn = () => {
     .then(response => response.json())
     .then(data => {
         if (typeof data !== "object") {
-            if (data == "GAME_NOT_FOUND") {
-            }
-        }
-        else {
+        } else {
             update(data);
             updatePlayerHand(data["hand"], "#cards-template");
             updateOpponentHand(data["opponent"], "#opponent-cards-template-hand");

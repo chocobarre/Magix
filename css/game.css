@@ -221,7 +221,7 @@ body {
 #big-board {
     flex: 4;
     display: flex;
-    background-image: url(../images/Environment_Westmarch.jpg);
+    background-image: url(../images/battlefield.jpg);
     background-position: center;
     background-size: 100% 100%;
 }
