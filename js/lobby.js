@@ -27,7 +27,7 @@ function raven() {
 	id = setInterval(frame, 10);
 
 	function frame() {
-		if (pos == 2000) {
+		if (pos >= 2500) {
 			clearInterval(id);
 			pos = -50;
 		} else {
