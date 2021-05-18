@@ -12,10 +12,11 @@
         <link rel="stylesheet" type="text/css" href="css/lobby.css"/>
         <script defer src="js/lobby.js"></script>
     </head>
+    <div id="raven"></div>
     <body>
         <div id="container">
             <div id="logo">
-                <canvas id="canvas" width="250" height="250"></canvas>
+                <div id="head" onclick="raven()"></div>
             </div>
             <div id="chat">
                 <iframe style="width:1100px;height:562px;border:0" onload="applyStyles(this)" 

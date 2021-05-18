@@ -37,7 +37,6 @@ const state = () => {
 
         }
         else {
-
         }
 
         if (data == "WAITING") {
@@ -201,7 +200,7 @@ opponentHero.onclick = () => {
 const update = data => {
     // Names
     document.querySelector("#opponent-UI-middle-middle").innerText = data.opponent.username;
-    document.querySelector("#player-name").innerText = data.username;
+    document.querySelector("#player-name").innerText = localStorage["savedUsername"];
 
     // HP
     document.querySelector("#opponent-UI-middle-left").innerText = data.opponent.hp;
@@ -336,8 +335,6 @@ function updatePlayerBoard(data, board) {
 
         if (element["state"] != "SLEEP") {
             div.style.boxShadow = "0px 0px 5px 5px #a5fdfe";
-        } else {
-            //div.querySelector(".state").innerText = "zZzZzZzZzZzZz";
         }
 
         if (element["mechanics"].indexOf("Taunt") > -1) {

@@ -1,8 +1,30 @@
+/*==========================================================
+*
+*   Local storage
+*
+==========================================================*/
+
+const rememberUser = () => {
+    localStorage["savedUsername"] = document.querySelector("#username").value;
+}
+
+/*==========================================================
+*
+*   Animation canvas
+*
+==========================================================*/
+
 let canvas = null;
 let ctx = null;
 let spriteList = [];
 
 window.addEventListener("load", () => {
+    // Local storage
+    if (localStorage["savedUsername"] != null) {
+        document.querySelector("#username").value = localStorage["savedUsername"];
+    }
+
+    // Canvas
     canvas = document.querySelector("#canvas");
     ctx = canvas.getContext("2d");
     tick();
@@ -12,12 +34,8 @@ const tick = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (Math.random() < 0.01) {
-        spriteList.push(new Pluie(2068, 280));
-        spriteList.push(new Pluie(2088, 280));
-    }
-
-    if (Math.random() < 0.01) {
-        spriteList.push(new Pluie(2088, 280));
+        spriteList.push(new Larmes(2068, 280));
+        spriteList.push(new Larmes(2088, 280));
     }
     
     for (let i = 0; i < spriteList.length; i++) {
@@ -33,7 +51,7 @@ const tick = () => {
     window.requestAnimationFrame(tick);
 }
 
-class Pluie {
+class Larmes {
     constructor(x, y) {
         this.x = x;
         this.y = y;

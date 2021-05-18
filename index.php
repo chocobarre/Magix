@@ -22,14 +22,14 @@
                 <form action="index.php" method="post">
                     <div>
                         <label>U S E R N A M E</label>
-                        <input id="username" name="username" type="text" value="" required="">
+                        <input id="username" name="username" type="text">
                     </div>
                     <div>
                         <label>P A S S W O R D</label>
-                        <input id="password" name="password" type="password" value="" required="">
+                        <input id="password" name="password" type="password">
                     </div>
                     <div>
-                        <button id="connect" type="submit"></button>
+                        <button id="connect" onclick="rememberUser()" type="submit"></button>
                     </div>
                 </form>
             </div>

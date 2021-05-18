@@ -3,6 +3,8 @@
  * data = array('key1' => 'value1', 'key2' => 'value2');
  */
 
+	require_once("action/constants.php");
+	
 	session_start();
 
 	abstract class CommonAction {

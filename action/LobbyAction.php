@@ -35,10 +35,7 @@
 
                 $result = parent::callAPI("games/auto-match", $data);
 
-                if ($result == "JOINED_PVP") {
-                    header("location:game.php");
-                    exit;
-                } else if ($result == "CREATED_PVP") {
+                if ($result == "JOINED_PVP" || $result == "CREATED_PVP") {
                     header("location:game.php");
                     exit;
                 }
@@ -48,10 +45,7 @@
     
                 $result = parent::callAPI("games/auto-match", $data);
 
-                if ($result == "JOINED_PVP") {
-                    header("location:game.php");
-                    exit;
-                } else if ($result == "CREATED_PVP") {
+                if ($result == "JOINED_PVP" || $result == "CREATED_PVP") {
                     header("location:game.php");
                     exit;
                 }

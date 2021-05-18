@@ -12,9 +12,33 @@ const applyStyles = iframe => {
     }, 200);
 }
 
+let id = null;
+let bird = 1;
 
-/*ctx.fillStyle = "rgba(255, 0, 0, " + circle.opacity + ")";
-ctx.arc(80, 115, 5, 0, 2 * Math.PI);
-ctx.arc(120, 115, 5, 0, 2 * Math.PI);
-ctx.fill();
-ctx.opacity -= 0.01;*/
+function raven() {
+	let random = Math.floor(Math.random() * 8) + 1;
+	let bg = document.querySelector("#chat");
+	bg.style.backgroundImage = "url('./images/" + random + ".jpg')";
+
+	let elem = document.querySelector("#raven");
+	let pos = 0;
+	clearInterval(id);
+
+	id = setInterval(frame, 10);
+
+	function frame() {
+		if (pos == 2000) {
+			clearInterval(id);
+			pos = -50;
+		} else {
+			pos++;
+			elem.style.backgroundImage = "url('./images/raven" + bird + ".png')";
+			elem.style.left = pos + 'px';
+			bird++;
+
+			if (bird >= 25) {
+				bird = 1;
+			}
+		}
+	}
+}
