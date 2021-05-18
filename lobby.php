@@ -30,6 +30,7 @@
                 <a href="?training=true"><button id="training" name="training"></button></a>
                 <a href="?play=true"><button id="play" name="play"></button></a>
                 <a href="?coop=true"><button id="coop" name="coop"></button></a>
+                <a href="?guide=true"><button id="guide" name="guide"></button></a>
                 <a href="?logout=true"><button id="quit" name="quit"></button></a>
             </div>
         </div>

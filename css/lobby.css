@@ -120,6 +120,20 @@ html {
     background-image: url("../images/btn_coop_on.png");
 }
 
+#guide {
+    background-image: url("../images/btn_guide_off.png");
+    width: 174px;
+    height: 51px;
+    display: block;
+    border: 0;
+    cursor: pointer;
+    margin-top: 50px;
+}
+
+#guide:hover {
+    background-image: url("../images/btn_guide_on.png");
+}
+
 #quit {
     background-image: url("../images/btn_quit_off.png");
     width: 174px;

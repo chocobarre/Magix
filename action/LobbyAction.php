@@ -49,6 +49,18 @@
                     header("location:game.php");
                     exit;
                 }
+            } else if (!empty($_GET["guide"])) {
+                header("location:guide.php");
+                exit;
+                //$data["type"] = "PVP";
+                //$data["mode"] = "COOP";
+    
+                //$result = parent::callAPI("games/auto-match", $data);
+
+                /*if ($result == "JOINED_PVP" || $result == "CREATED_PVP") {
+                    header("location:game.php");
+                    exit;
+                }*/
             }
         }
     }
