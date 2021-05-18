@@ -80,26 +80,30 @@
     <template id="opponent-cards-template-hand"></template>
 
     <template id="opponent-cards-template">
-        <div class="state-cost">
-            <div class="state-cost-first"></div>
-            <div class="cost"></div>
-        </div>
-        <div class="state"></div>
-        <div class="mechanics"></div>
-        <div class="stats">
-            <div class="atk-hp"></div>
+        <div class="bg">
+            <div class="state-cost">
+                <div class="state-cost-first"></div>
+                <div class="cost"></div>
+            </div>
+            <div class="state"></div>
+            <div class="mechanics"></div>
+            <div class="stats">
+                <div class="atk-hp"></div>
+            </div>
         </div>
     </template>
 
     <template id="cards-template">
-        <div class="state-cost">
-            <div class="state-cost-first"></div>
-            <div class="cost"></div>
-        </div>
-        <div class="state"></div>
-        <div class="mechanics"></div>
-        <div class="stats">
-            <div class="atk-hp"></div>
+        <div class="bg">
+            <div class="state-cost">
+                <div class="state-cost-first"></div>
+                <div class="cost"></div>
+            </div>
+            <div class="state"></div>
+            <div class="mechanics"></div>
+            <div class="stats">
+                <div class="atk-hp"></div>
+            </div>
         </div>
     </template>
 

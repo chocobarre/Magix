@@ -24,7 +24,7 @@ body {
 .cardsOpponentHand {
     display: flex;
     flex-direction: column;
-    background-image: url(../images/card_back.png);
+    background-image: url(../images/card_back_1.jpg);
     background-position: center;
     background-size: 100%;
     background-repeat: no-repeat;
@@ -37,10 +37,10 @@ body {
 .cards {
     display: flex;
     flex-direction: column;
-    background-image: url(../images/04.jpg);
+    /*background-image: url(../images/04.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;*/
     width: 200px;
     height: 100%;
     gap: 10px;
@@ -50,6 +50,16 @@ body {
 
 .cards:hover {
     cursor: pointer;
+}
+
+.bg {
+    background-image: url(../images/04.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .state-cost {
@@ -91,7 +101,7 @@ body {
 .mechanics {
     background-color: white;
     border: solid black 2px;
-    flex: 4;
+    flex: 2;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,6 +115,7 @@ body {
     flex: 1;
     margin-left: 10px;
     margin-right: 10px;
+    margin-top: 5px;
     margin-bottom: 5px;
 }
 
@@ -211,8 +222,8 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-top: 55px;
+    margin-bottom: 35px;
     gap: 20px;
 }
 
@@ -221,7 +232,7 @@ body {
 #big-board {
     flex: 4;
     display: flex;
-    background-image: url(../images/battlefield.jpg);
+    background-image: url(../images/battlefield_2.jpg);
     background-position: center;
     background-size: 100% 100%;
 }
@@ -396,7 +407,7 @@ body {
         }
 
         #opponent-card-middle {
-            background-image: url(../images/card_back.png);
+            background-image: url(../images/card_back_1.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: 100%;
@@ -409,10 +420,11 @@ body {
         }
 
         #opponent-card-right {
+            margin-left: 10px;
             font-size: 20px;
             flex: 1;
             display: flex;
-            justify-content: center;
+            justify-content: left;
             align-items: center;
         }
 
@@ -431,7 +443,7 @@ body {
         }
 
         #player-card-middle {
-            background-image: url(../images/card_back.png);
+            background-image: url(../images/card_back_2.jpg);
             background-position: center;
             background-repeat: no-repeat;
             background-size: 100%;
@@ -444,10 +456,11 @@ body {
         }
 
         #player-card-right {
+            margin-left: 10px;
             font-size: 20px;
             flex: 1;
             display: flex;
-            justify-content: center;
+            justify-content: left;
             align-items: center;
         }
 

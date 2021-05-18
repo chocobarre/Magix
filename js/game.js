@@ -30,7 +30,7 @@ const state = () => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        //console.log(data);
         //console.log(data.opponent)
 
         if (typeof data !== "object") {
@@ -264,6 +264,8 @@ function updatePlayerHand(data, hand) {
         div.querySelector(".cost").innerText = element["cost"];
         div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
+        div.querySelector(".bg").style.backgroundImage = "url('./images/cards/" + element["id"] + ".jpg')";
+
         document.querySelector("#player-hand").append(div);
         
         div.style.border = "solid black 7px";
@@ -271,6 +273,11 @@ function updatePlayerHand(data, hand) {
 
         if (element["cost"] <= document.querySelector("#player-mana").innerText) {
             div.style.boxShadow = "0px 0px 5px 5px #b2fe88";
+        }
+
+        if (element["mechanics"] == "") {
+            div.querySelector(".mechanics").style.border = "0px transparent solid";
+            div.querySelector(".mechanics").style.backgroundColor = "transparent";
         }
 
         div.onmouseenter = () => {
@@ -331,6 +338,8 @@ function updatePlayerBoard(data, board) {
         div.querySelector(".cost").innerText = element["cost"];
         div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
+        div.querySelector(".bg").style.backgroundImage = "url('./images/cards/" + element["id"] + ".jpg')";
+
         document.querySelector("#player-board").append(div);
 
         if (element["state"] != "SLEEP") {
@@ -343,6 +352,11 @@ function updatePlayerBoard(data, board) {
 
         if (element["mechanics"].indexOf("Stealth") > -1) {
             div.style.opacity = "0.5";
+        }
+
+        if (element["mechanics"] == "") {
+            div.querySelector(".mechanics").style.border = "0px transparent solid";
+            div.querySelector(".mechanics").style.backgroundColor = "transparent";
         }
         
         div.onmouseenter = () => {
@@ -396,6 +410,8 @@ function updateOpponentBoard(data, board) {
         div.querySelector(".cost").innerText = element["cost"];
         div.querySelector(".atk-hp").innerText = element["atk"] + "/" + element["hp"];
 
+        div.querySelector(".bg").style.backgroundImage = "url('./images/cards/" + element["id"] + ".jpg')";
+
         document.querySelector("#opponent-board").append(div);
 
         if (element["mechanics"].indexOf("Taunt") > -1) {
@@ -404,6 +420,11 @@ function updateOpponentBoard(data, board) {
 
         if (element["mechanics"].indexOf("Stealth") > -1) {
             div.style.opacity = "0.5";
+        }
+
+        if (element["mechanics"] == "") {
+            div.querySelector(".mechanics").style.border = "0px transparent solid";
+            div.querySelector(".mechanics").style.backgroundColor = "transparent";
         }
         
         div.onmouseenter = () => {
