@@ -30,8 +30,8 @@ const state = () => {
     })
     .then(response => response.json())
     .then(data => {
-        //console.log(data);
-        //console.log(data.opponent)
+        console.log(data);
+        console.log(data.opponent)
 
         if (typeof data !== "object") {
 
